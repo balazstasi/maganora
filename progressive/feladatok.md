@@ -17,10 +17,11 @@
 
 ## jQuery
 
+
 Az alábbi feladatokat a  `recipe_list.html`  oldalon oldd meg!
 
 1.  **Kiválasztás**  Írd ki a konzolra! (kiválasztás szelektorokkal vagy jQuery metódussal)
-        1.  a listaelemeket (`li`)
+	   1.  a listaelemeket (`li`)
         
         2.  a  `navbar-brand`  stílusosztályú elemet
         
@@ -32,19 +33,19 @@ Az alábbi feladatokat a  `recipe_list.html`  oldalon oldd meg!
         
         6.  az összes ételre mutató linket
 2.  **Bejárás**
-        1.  Válassz ki egy kategóriát, és utána írd ki a konzolra az összes benne lévő  `list-group-item`  stílusosztályú elemet!
+      1.  Válassz ki egy kategóriát, és utána írd ki a konzolra az összes benne lévő  `list-group-item`  stílusosztályú elemet!
         
         2.  Válassz ki egy ételhez tartozó linket az oldalon, és add meg a kategóriája nevét!
         
         3.  Konzolra írd ki, mindegyik kategóriára, hogy hány étel tartalmaz!
 3.  **Manipulálás**
-        1.  Írd ki a kategóriák mellé zárójelben, hogy hány étel jelenik meg alattuk!
+      1.  Írd ki a kategóriák mellé zárójelben, hogy hány étel jelenik meg alattuk!
         
         2.  A túl rövid nevű (<5) recepteket keretezd be pirosan!
         
         3.  A kategórianevekre kattintva csukódjon össze a kategória! Újra rákattintva jelenjen meg!
 4.  **Létrehozás**
-        1.  Készíts egy felsorolás az oldalon a kategórianevekkel!
+       1.  Készíts egy felsorolás az oldalon a kategórianevekkel!
         
         2.  Mindegyik kategóriafejlécbe generálj egy gombot, amire kattintva az adott kategória kitölti a teljes sort (12 egység széles lesz)!
         
