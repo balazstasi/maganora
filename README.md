@@ -1,4 +1,13 @@
 # Webfejlesztés magánóra
+##  Hasznos linkek
+
+Ezek a linkek az ELTE webfejlesztés és webprogrmaozás tárgyainak curriculumát tartalmazzák.
+
+[HTML+CSS](https://regi.tankonyvtar.hu/hu/tartalom/tamop412A/2011-0052_27_weblapkeszites_technikaja_ergonomiaja/index.scorml)
+
+JS & PHP  
+[1](http://webprogramozas.inf.elte.hu/webprog/ea/01/#/) [2](http://webprogramozas.inf.elte.hu/webprog/ea/02/#/) [3](http://webprogramozas.inf.elte.hu/webprog/ea/03/#/) [4](http://webprogramozas.inf.elte.hu/webprog/ea/04/#/) [5](http://webprogramozas.inf.elte.hu/webprog/ea/05/#/) [6](http://webprogramozas.inf.elte.hu/webprog/ea/06/#/) [7](http://webprogramozas.inf.elte.hu/webprog/ea/07/#/)  [8](http://webprogramozas.inf.elte.hu/webprog/ea/08/#/) [9](http://webprogramozas.inf.elte.hu/webprog/ea/09/#/) [10](http://webprogramozas.inf.elte.hu/webprog/ea/10/#/) [11](http://webprogramozas.inf.elte.hu/webprog/ea/11/#/) [12](http://webprogramozas.inf.elte.hu/webprog/ea/12/#/) [13](http://webprogramozas.inf.elte.hu/webprog/ea/13/#/)
+
 ## Progresszív landing page
 Az óra anyaga a [progressive](progressive) mappában elérhető. Egy alap bootstrap landing page különböző funkciói vannak implementálva. A feladatleírást  [itt](progressive/feladatok.md) találod.
 ## React és egyebek
