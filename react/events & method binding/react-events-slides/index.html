@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--<title>React Events &mdash; Demo  documentation</title>-->
+    <title>React Eventek</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+
+    <link rel="stylesheet" href="_static/revealjs/css/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="_static/revealjs/css/theme/white.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/revealjs-sphinx.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <footer id="slide-footer"></footer>
+
+      <div class="slides">
+        <section>
+          <h2>React Eventek</h2>
+
+          <div class="event"></div>
+        </section>
+
+        <section>
+          <section>
+            <h2>Célok</h2>
+          </section>
+          <section>
+            <h3>Célok</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Fűzzünk hozzá event handlereket React komponensekhez
+                </li>
+                <li class="fragment">
+                  Használjunk method bindingot, hogy megmaradjon
+                  <cite>this</cite> kontextus az event handlerek használatakor
+                </li>
+                <li class="fragment">
+                  Adjuk át az event kezelőket, mint propokat gyerek
+                  komponenseknek
+                </li>
+                <li class="fragment">
+                  Értsük meg a <cite>key</cite> prop szükségességét
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>React Eventek review</h2>
+          </section>
+          <section>
+            <h3>React Eventek</h3>
+            <p>
+              Hozzáadhatunk HTML elemekhez eventkezelőket a Reactban
+              <span class="raw-reveal"><br /></span> speckiális attribútumokon
+              keresztül.
+            </p>
+            <p>
+              (Ezt sima JS-ben is meg tudjuk csinálni, csupán kicsit más a
+              szintaxis)
+            </p>
+          </section>
+          <section>
+            <h3>Event Attribútumok</h3>
+            <p>
+              Bármelyik esemény (event), amiket tudunk figyelni JS-ben, tudjuk
+              Reactban is!
+            </p>
+            <div class="fragment docutils container">
+              <p>Példák:</p>
+            </div>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Mouse eventek:
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onClick</span></code
+                  >,
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onMouseOver</span></code
+                  >, etc
+                </li>
+                <li class="fragment">
+                  Form eventek:
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onSubmit</span></code
+                  >, etc
+                </li>
+                <li class="fragment">
+                  Keyboard eventek:
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onKeyDown</span></code
+                  >,
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onKeyUp</span></code
+                  >,
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">onKeyPress</span></code
+                  >
+                </li>
+                <li class="fragment">
+                  <a
+                    class="reference external"
+                    href="https://reactjs.org/docs/events.html#supported-events"
+                    >Full lista</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Példa</h3>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id6">
+                <div class="highlight-jsx notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s">&quot;react&quot;</span><span class="p">;</span>
+<span class="k">import</span> <span class="s">&quot;./WiseSquare.css&quot;</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">WiseSquare</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">dispenseWisdom</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">messages</span> <span class="o">=</span> <span class="p">[</span> <span class="cm">/* wise messages go here */</span>
+    <span class="p">];</span>
+    <span class="kd">let</span> <span class="nx">rIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">messages</span><span class="p">[</span><span class="nx">rIndex</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;WiseSquare&quot;</span>
+           <span class="na">onMouseEnter</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">dispenseWisdom</span><span class="p">}&gt;</span>
+        😃
+      &lt;<span class="p">/d</span><span class="nt">iv&gt;</span><span class="p"></span>
+    )<span class="p">;</span>
+  }<span class="p"></span>
+}<span class="p"></span>
+
+e<span class="k">xport </span>d<span class="k">efault </span>W<span class="nx">iseSquare;</span><span class="p"></span>
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Method Binding</h2>
+          </section>
+          <section>
+            <h3>A <cite>this</cite> kulcsszó</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Amikor az eseménykezelő metódusaid referálnak a
+                  <cite>this</cite>kulcszóra, figyelj oda!
+                </li>
+                <li class="fragment">
+                  El fogod veszíteni a <cite>this</cite> kontextusát ha egy
+                  függvényt adsz át mint eseménykezelő
+                </li>
+                <li class="fragment">
+                  Mi lesz, ha az idézeteket átrakjuk a
+                  <cite>defaultPropsba</cite>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Example Revisited</h3>
+            <div class="literal-block-wrapper docutils container" id="id7">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">class</span> <span class="nx">WiseSquareWithProps</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">messages</span><span class="p">:</span> <span class="p">[</span> <span class="cm">/* wise messages go here */</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">dispenseWisdom</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&quot;THIS IS:&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span> <span class="c1">// undefined 😭</span>
+    l<span class="kd">et </span>{<span class="p"> </span>m<span class="nx">essages </span>}<span class="p"> </span>=<span class="o"> </span>t<span class="k">his.</span><span class="p">p</span><span class="nx">rops;</span><span class="p"></span>
+    l<span class="kd">et </span>r<span class="nx">Index </span>=<span class="o"> </span>M<span class="nx">ath.</span><span class="p">f</span><span class="nx">loor(</span><span class="p">M</span><span class="nx">ath.</span><span class="p">r</span><span class="nx">andom(</span><span class="p">) </span>*<span class="o"> </span>m<span class="nx">essages.</span><span class="p">l</span><span class="nx">ength)</span><span class="p">;</span>
+    c<span class="nx">onsole.</span><span class="p">l</span><span class="nx">og(</span><span class="p">m</span><span class="nx">essages[</span><span class="p">r</span><span class="nx">Index]</span><span class="p">);</span>
+  }<span class="p"></span>
+
+  r<span class="nx">ender(</span><span class="p">) </span>{<span class="p"></span>
+    r<span class="k">eturn </span>(<span class="p"></span>
+      &lt;<span class="p">d</span><span class="nt">iv </span>c<span class="na">lassName=</span><span class="o">&quot;</span><span class="s">WiseSquare&quot;</span>
+           o<span class="na">nMouseEnter=</span><span class="o">{</span><span class="p">t</span><span class="k">his.</span><span class="p">d</span><span class="nx">ispenseWisdom}</span><span class="p">&gt;</span>
+        😃
+      &lt;/<span class="p">di</span><span class="nt">v&gt;</span>
+<span class="p"> </span>   );<span class="p"></span>
+<span class="p"> </span> }
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Javítsuk meg</h3>
+            <p>Három féle képpen van rá lehetőség:</p>
+            <div class="docutils container">
+              <ol class="arabic simple">
+                <li class="fragment">
+                  Használjuk a <cite>bind</cite> metódust inline
+                </li>
+                <li class="fragment">Használjunk egy arrow functiont</li>
+                <li class="fragment">Bind metódus a konstruktorban</li>
+              </ol>
+            </div>
+          </section>
+          <section>
+            <h3>Inline</h3>
+            <div class="highlight-jsx notranslate">
+              <div class="highlight">
+                <pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;WiseSquare&quot;</span>
+      <span class="na">onMouseEnter</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">dispenseWisdom</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span> <span class="p">&gt;</span>
+  <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre>
+              </div>
+            </div>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <p><strong>Pro</strong></p>
+                <ul class="simple">
+                  <li>Egyértelmű</li>
+                </ul>
+              </div>
+              <div class="fragment docutils container">
+                <p><strong>Contra</strong></p>
+                <ul class="simple">
+                  <li>
+                    Mi van akkor, ha a
+                    <code class="docutils literal notranslate"
+                      ><span class="pre">this.dispenseWisdom</span></code
+                    >
+                    <span class="raw-reveal"><br /></span> metódust több
+                    komponensnek akarjuk átadni?
+                  </li>
+                  <li>Új függvény jön létre a memóriában!</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Arrow Function</h3>
+            <div class="highlight-jsx notranslate">
+              <div class="highlight">
+                <pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;WiseSquare&quot;</span>
+      <span class="na">onMouseEnter</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">dispenseWisdom</span><span class="p">()}</span> <span class="p">&gt;</span>
+  <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre>
+              </div>
+            </div>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <p><strong>Pro</strong></p>
+                <ul class="simple">
+                  <li>Nincs nehezen érthető bind</li>
+                </ul>
+              </div>
+              <div class="fragment docutils container">
+                <p><strong>Contra</strong></p>
+                <ul class="simple">
+                  <li>Kicsit zavarosabb a működése</li>
+                  <li>
+                    Ismét, mi van, ha több függvénynek akarjuk átadni?
+                  </li>
+                  <li>
+                    Új függvény kerül a memóriába minden egyes render után
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>A konstruktorban</h3>
+            <div class="highlight-jsx notranslate">
+              <div class="highlight">
+                <pre><span></span><span class="kd">class</span> <span class="nx">WiseSquareWithProps</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="cm">/* do other stuff */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">dispenseWisdom</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dispenseWisdom</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+              </div>
+            </div>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <p><strong>Pro</strong></p>
+                <ul class="simple">
+                  <li>Egyszer kell megcsinálni!</li>
+                  <li>Gyorsabb memória szempontjából</li>
+                </ul>
+              </div>
+              <div class="fragment docutils container">
+                <p><strong>Contra</strong></p>
+                <ul class="simple">
+                  <li>Hot reloading nem fog működni</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Method Binding argumentumokkal</h2>
+          </section>
+          <section>
+            <h3>Method Binding argumentumokkal</h3>
+            <div class="fragment docutils container">
+              <p>
+                Az előző példában,
+                <code class="docutils literal notranslate"
+                  ><span class="pre">this.dispenseWisdom</span></code
+                >
+                <span class="raw-reveal"><br /></span> nem kapott semmilyen
+                argumentumot.
+              </p>
+            </div>
+            <div class="fragment docutils container">
+              <p>
+                De mivan akkor, ha az eseménykezelőnknek szüksége van
+                argumentumokra?
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3>Példa</h3>
+            <div class="literal-block-wrapper docutils container" id="id8">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">class</span> <span class="nx">ButtonList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">colors</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="s">&quot;peachpuff&quot;</span><span class="p">]</span>
+  <span class="p">};</span>
+
+  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="s">You clicked on the </span><span class="si">${</span><span class="nx">color</span><span class="si">}</span><span class="s"> button.</span><span class="sb">`</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;ButtonList&quot;</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">colorObj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">backgroundColor</span><span class="p">:</span> <span class="nx">c</span> <span class="p">};</span>
+          <span class="k">return</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">colorObj</span><span class="p">}</span>
+<span class="hll">                    <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">c</span><span class="p">)}&gt;</span>
+</span>              Click on me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+          <span class="p">);</span>
+        <span class="p">})}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Példa</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Egy ciklusban argumentumokat tudunk továbbadni
+                </li>
+                <li class="fragment">Akár használhatunk arrow functiont</li>
+                <li class="fragment">
+                  Ezek mind a nemrég említett teljesítménybeli romlásban fognak
+                  szenvedni
+                </li>
+                <li class="fragment">
+                  Tudunk jobbat, de előbb beszélni kellene a…
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Függvények átadása gyerek komponensekbe</h2>
+          </section>
+          <section>
+            <h3>Függvények átadása gyerek komponensekbe</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">Nagyon gyakori a Reactban</li>
+                <li class="fragment">
+                  Az ötlet: gyakran a gyermek komponensek nem rendelkeznek
+                  state-tel,
+                  <span class="raw-reveal"><br /></span> de a szülőt
+                  informálniuk kell, hogy változtasson a staten.
+                </li>
+                <li class="fragment">
+                  Hogyan küldünk fel adatot a szülő komponensnek?
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Hogyan áramlik az adat</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">A szülő komponens definiál egy fg-t</li>
+                <li class="fragment">
+                  A fg átadódik propként a gyermek komponensnek
+                </li>
+                <li class="fragment">A gyerek komponens meghívja a propot</li>
+                <li class="fragment">
+                  A szülő komponens fg-e meghívódik, általában state változtatás
+                  miatt
+                </li>
+                <li class="fragment">
+                  A szülő komponens újrarenderelődik a gyerekkel együtt
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Hogy néz ki</h3>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id9">
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">NumberList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">nums</span><span class="p">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">remove</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">st</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="nx">nums</span><span class="p">:</span> <span class="nx">st</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">!==</span> <span class="nx">num</span><span class="p">)}))</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">nums</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">NumberItem</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span>
+        <span class="na">remove</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">n</span><span class="p">)}</span> <span class="p">/&gt;</span>
+    <span class="p">));</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;{</span><span class="nx">nums</span><span class="p">}&lt;/</span><span class="nt">ul</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id10">
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">NumberItem</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">(){</span>
+    <span class="k">return</span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">remove</span><span class="p">}&gt;</span>
+          X
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="docutils container">
+                  <ul class="simple">
+                    <li class="fragment">
+                      Method bindolhatunk is
+                      <span class="raw-reveal"><br /></span> benne a
+                      <cite>map</cite> fg-ben
+                    </li>
+                    <li class="fragment">És még még jobbat is tudunk!</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Egyszerileg lekötött fg-t használhatunk</h3>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id11">
+                  <div class="code-block-caption">
+                    <span class="caption-text"
+                      >demo/numbers-app/src/BetterNumList.js</span
+                    >
+                  </div>
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">BetterNumList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">nums</span><span class="p">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span> <span class="p">};</span>
+<span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">remove</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span>  <span class="p">}</span>
+
+  <span class="nx">remove</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">st</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="nx">nums</span><span class="p">:</span> <span class="nx">st</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">!==</span> <span class="nx">num</span><span class="p">)}))</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">nums</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">BetterNumItem</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span>
+        <span class="na">remove</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">}</span> <span class="p">/&gt;</span>
+    <span class="p">));</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;{</span><span class="nx">nums</span><span class="p">}&lt;/</span><span class="nt">ul</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id12">
+                  <div class="code-block-caption">
+                    <span class="caption-text"
+                      >demo/numbers-app/src/BetterNumItem.js</span
+                    >
+                  </div>
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">NumberItem</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+<span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span> <span class="o">=</span>
+</span><span class="hll">      <span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span>  <span class="p">}</span>
+
+  <span class="nx">handleRemove</span><span class="p">()</span> <span class="p">{</span>
+<span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span>  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">(){</span>
+    <span class="k">return</span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span><span class="p">}&gt;</span>
+          X
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Hol bindoljunk?</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Minél feljebb, annál jobb! Ne bindoljunk a gyermek
+                  komponensben, ha lehetséges
+                </li>
+                <li class="fragment">
+                  Ha kell egy paraméter passold le a gyereknek mint prop,
+                  <span class="raw-reveal"><br /></span> és bindold a gyerekben
+                  és a szülőben
+                </li>
+                <li class="fragment">
+                  Kerüld el az inline és arrow functionos bindolást ha lehet
+                </li>
+                <li class="fragment">
+                  Nem szükséges bindolni a konstruktorban
+                  <strong>és</strong> inline fg-t csinálni
+                </li>
+                <li class="fragment">
+                  Ha elakadsz, ne foglalkozz a teljesítménnyel,
+                  <span class="raw-reveal"><br /></span> előbb próbáld a
+                  kommunikációt megoldani
+                  <ul>
+                    <li>Mindig refaktorálhatsz később!</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Naming konvenciók</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Bárminek elnevezhetjük ezeket a metódusokat, a Reactot nem
+                  érdekli
+                </li>
+                <li class="fragment">
+                  A konzisztencia érdekében próbáljuk
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">action</span></code
+                  >
+                  /
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">handleAction</span></code
+                  >
+                  mintát követni:
+                  <ul>
+                    <li class="fragment">
+                      A szülőben a művelethez illő nevet adjunk
+                      <span class="raw-reveal"><br /></span> (<code
+                        class="docutils literal notranslate"
+                        ><span class="pre">remove</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">add</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">open</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">toggle</span></code
+                      >, stb.)
+                    </li>
+                    <li class="fragment">
+                      A gyerekben, használjuk ugyanezt a nevet a “handle”
+                      <span class="raw-reveal"><br /></span> szót elé rakva
+                      <span class="raw-reveal"><br /></span> (<code
+                        class="docutils literal notranslate"
+                        ><span class="pre">handleRemove</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">handleAdd</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">handleOpen</span></code
+                      >,
+                      <code class="docutils literal notranslate"
+                        ><span class="pre">handleToggle</span></code
+                      >, stb.)
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Listák és Keyek</h2>
+          </section>
+          <section>
+            <h3>Listák és Keyek</h3>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id13">
+                <div class="code-block-caption">
+                  <span class="caption-text"
+                    >demo/numbers-app/src/BetterNumList.js</span
+                  >
+                </div>
+                <div class="highlight-jsx notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="kd">class</span> <span class="nx">BetterNumList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">nums</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">BetterNumItem</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span>
+        <span class="na">remove</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">}</span> <span class="p">/&gt;</span>
+    <span class="p">));</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;{</span><span class="nx">nums</span><span class="p">}&lt;/</span><span class="nt">ul</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Mikor mappolunk az adat fölött és returnölünk elemeket,
+                  <span class="raw-reveal"><br /></span> kapunk egy warningot a
+                  keyekkel kapcsolatban
+                </li>
+                <li class="fragment">
+                  <cite>key</cite> egy spec. string Attribútum ami jelöli az
+                  adott adatot, és megkülönbözteti a többitől
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Kulcsok hozzáadása</h3>
+            <p>
+              Assignoljunk egy keyt!
+              <cite>numbers.map()</cite>
+            </p>
+            <div class="fragment docutils container">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">class</span> <span class="nx">NumberList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">nums</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">NumberItem</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span>
+<span class="hll">        <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span>
+</span>        <span class="na">remove</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">}</span>
+      <span class="p">/&gt;</span>
+    <span class="p">));</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;{</span><span class="nx">nums</span><span class="p">}&lt;/</span><span class="nt">ul</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Keys</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  A keyek segítenek a Reactnak meghatározni melyik elemek voltak
+                  hozzáadva, törölve vagy módosítva.
+                </li>
+                <li class="fragment">
+                  Kulcsokat ismétlődő elemeknek kell adnunk a fenti indokok
+                  miatt.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Picking a key</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Best way: egy string ami teljesen egyedi.
+                </li>
+                <li class="fragment">
+                  A legtöbbször ID-kat használunk, amik az adatbázisunk már
+                  automatikusan hozzáadott az adatunkhoz:
+                </li>
+              </ul>
+            </div>
+            <div class="fragment docutils container">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">let</span> <span class="nx">todoItems</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+    <span class="p">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Last resort</h3>
+            <p>
+              Amikor nincs semmi lehetőségünk,
+              <span class="raw-reveal"><br /></span> az iteráció indexét is
+              használhatjuk végső esetben:
+            </p>
+            <div class="fragment docutils container">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="c1">// CSAK AKKOR HA NINCS MÁS ID</span>
+
+<span class="kd">const</span> <span class="nx">todoItems</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">index</span><span class="p">}&gt;</span>
+    <span class="p">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</pre>
+                </div>
+              </div>
+            </div>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Ne használjuk az iterációs ID-t, ha módosítani akarjuk vagy
+                  törölni az elemeket a listából.
+                  <ul>
+                    <li>
+                      Hibákat és nem kiszámítható dolgokat okozhat.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="_static/revealjs/lib/js/head.min.js"></script>
+    <script src="_static/revealjs/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controlsBackArrows: "faded",
+        progress: true,
+        slideNumber: true,
+        maxScale: 5,
+        width: 1280,
+        height: 800,
+        margin: 0.1,
+        transition: "slide",
+        dependencies: [
+          { src: "_static/revealjs/plugin/notes/notes.js", async: true },
+        ],
+      });
+      // External links should open in new window
+      var externalLinks = document.getElementsByClassName("external");
+      for (var i = 0; i < externalLinks.length; i++)
+        externalLinks[i].setAttribute("target", "_blank");
+    </script>
+  </body>
+</html>
