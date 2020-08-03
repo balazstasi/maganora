@@ -1,0 +1,2 @@
+# Kódok kipróbálása
+[JS Bin](https://jsbin.com/yivatig/1/edit?js,console) oldalon kiválasztjuk a Javascript és a Console fület, és átállítjuk a Javascript ablaknál az ES6 / Babel pontra a legördülő menüben.
