@@ -23,7 +23,7 @@ class Cell extends Component {
 
   handleClick(evt) {
     // 'telefonáljunk fel' a Board-hoz hogy forgassa meg a körülötte lévő cellákat
-    this.props.flipCellsAroundMe();
+    this.props.flipCellsAroundMe()
   }
 
   render() {

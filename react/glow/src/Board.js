@@ -69,6 +69,7 @@ class Board extends Component {
   /** kezeljük egy cella változását és nézzük meg nyertünk-e */
 
   flipCellsAround(coord) {
+    console.log("FLIPPING", coord);
     let { ncols, nrows } = this.props;
     let board = this.state.board;
 
@@ -92,9 +93,9 @@ class Board extends Component {
     // nyerés: minden cella ki van kapcsolva
     // TODO: határozd meg, hogy nyertünk-e
 
-    let hasWon = board.every(row => row.every(cell => !cell));
+    let hasWon = board.every((row) => row.every((cell) => !cell));
 
-    this.setState({board, hasWon});
+    this.setState({ board, hasWon });
   }
 
   /** Rendereljük a győztes szöveget vagy magát a táblát, ha még nem nyertünk. */
@@ -109,7 +110,7 @@ class Board extends Component {
           <Cell
             key={coord}
             isLit={this.state.board[y][x]}
-            flipCellAroundMe={() => this.flipCellsAround(coord)}
+            flipCellsAroundMe={() => this.flipCellsAround(coord)}
           />
         );
       }
@@ -123,16 +124,10 @@ class Board extends Component {
   }
   render() {
     // ha a játék meg van nyerve mutass egy 'You win!' szöveget és semmi mást
-
-    // TODO
-
-    // Tábla elkészítése
-
-    // TODO
     return (
-      <div className="">
-        <h1>BOARD</h1>
-        {this.makeTable()}
+      <div>
+        {this.state.hasWon ? (<div className="winner">YOU WON</div>) : (
+        <div>{this.makeTable()}</div>)}
       </div>
     );
   }
