@@ -11,14 +11,14 @@ class BetterNumberList extends Component {
   remove(num) {
     console.log("REMOVING!");
     console.log(num);
-    this.setState(st => ({
-      nums: st.nums.filter(n => n !== num)
+    this.setState((st) => ({
+      nums: st.nums.filter((n) => n !== num),
     }));
   }
 
   render() {
     // Key must be unique!
-    let nums = this.state.nums.map(n => (
+    let nums = this.state.nums.map((n) => (
       <BetterNumberItem key={n} value={n} remove={this.remove} />
     ));
     return (
