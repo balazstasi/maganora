@@ -1,5 +1,0 @@
-console.log(Math.random())
-console.log(Math.sign(-20))
-console.log(Math.trunc(-1.7))
-console.log(Math.floor(-1.7))
-console.log(Math.ceil(1.7))
