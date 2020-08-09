@@ -132,6 +132,7 @@
 
    Ha a komponensnek szüksége van **state-re vagy lifecycle metódusokra** akkor class komponenseket használjunk, másképp megteszi a függvénykomponens is.
    _Azonban, a React 16.8-as verziójától kezdve (Hook frissítés) használhatunk statet és lifecycle metódusokat függvénykomponensekben is. Tehát végsősoron preferencia kérdése._
+
    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 7. ### What are Pure Components?
@@ -171,7 +172,7 @@
 
     A state hasonlít a propshoz, de privát és teljes mértékben a komponens módosítja és kezeli. Pl nem érheti el egy másik komponens, kivéve akkor, ha mi ezt explicit akarjuk.
 
-**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 9. ### Mik a propok?
 
@@ -195,16 +196,15 @@
    props.reactProp
    ```
 
-**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 10. ### Mi a különbség a state és a props között?
 
     A state és a props is JS objektumok. Mindkettő információt tárol, ami befolyásolja a komponensünk működését. Azonban a működésük és a céljuk teljesen eltér: a propok át vannak adva komponensünknek (mintha egy függvénynek paramétereket adnánk meg), a state pedig a komponens belsejében létrehozott, és változtatott érték (mintha egy függvényben változókat hoznánk létre)
 
+    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
-       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
-
-12. ### Miért ne módosítsuk a state-t közvetlenül?
+11. ### Miért ne módosítsuk a state-t közvetlenül?
 
     Ha direkt változtatjuk a state-t, akkor nem renderelődik újra a komponens
 
@@ -223,7 +223,7 @@
     **Megjegyzés:** Direkt megadhatjuk a state-t a konstruktorban vagy használhatjuk a JS class-field deklarációs szintaxisát.
 
 
-       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 13. ### Mi a jelentősége egy callback függvénynek a `setState()` argumentumaként?
 
@@ -237,6 +237,7 @@
       console.log("The name has updated and component re-rendered")
     );
     ```
+
 
     **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
@@ -275,4 +276,5 @@
     3. A HTML-ben a fg végére oda kell tenni a `()` zárójeleket.
        A Reactban azonban nem szabad ezt odarakni, mert a rendereléskor automatikusan meg fog hívódni a függvény.
 
-       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+
+    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
