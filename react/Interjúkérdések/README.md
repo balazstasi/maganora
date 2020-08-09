@@ -20,9 +20,10 @@
 | 13  | [Mi a különbség a React és a HTML eseménykezelés között?](#mi-a-különbség-a-react-és-a-html-eseménykezelés-között)                                             |
 
 1. ### Mi a React?
+
    A React egy **nyílt forráskódú frontend JavaScript könyvtár** amit frontend, legfőképp single page appok (SPA-k) fejlesztésére használnak. A React-et [Jordan Walke](https://github.com/jordwalke) találta ki, egy fejlesztő a Facebooknál. Az első alkalmazás ami Reactben készült az a Facebook híroldala (2011) és az Instagram (2012)
 
-**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 2. ### Mik a React legfőbb tulajdonságai?
 
@@ -53,8 +54,7 @@
    }
    ```
 
-
-      **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 4. ### Mi a különbség az Element és a Component között?
 
@@ -125,8 +125,7 @@
       }
       ```
 
-
-      **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 6. ### Mikor használjunk Osztály alapú komponenseket és mikor Függvénykomponenseket?
 
@@ -277,4 +276,4 @@
        A Reactban azonban nem szabad ezt odarakni, mert a rendereléskor automatikusan meg fog hívódni a függvény.
 
 
-    **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+        **[⬆ Vissza a tetejére](#tartalomjegyzék)**
