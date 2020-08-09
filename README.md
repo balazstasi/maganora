@@ -20,7 +20,7 @@ Az óra anyaga a [progressive](progressive) mappában elérhető. Egy alap boots
 
 ### Interjú kérdések
 
-Az [Interjú kérdések](Interjúkérdések) mappára kattintva találhatsz gyakori React interjúkérdéseket és azoknak a válaszait példákkal stb. Ezeket folyamatosan frissíteni fogom, ahogy haladunk előre a tanulmányokkal.
+Az [Interjú kérdések](react/Interjúkérdések) mappára kattintva találhatsz gyakori React interjúkérdéseket és azoknak a válaszait példákkal stb. Ezeket folyamatosan frissíteni fogom, ahogy haladunk előre a tanulmányokkal.
 
 ### Alapok
 
