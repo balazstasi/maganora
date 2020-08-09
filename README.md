@@ -18,6 +18,10 @@ Az óra anyaga a [progressive](progressive) mappában elérhető. Egy alap boots
 
 ## React és egyebek
 
+### Interjú kérdések
+
+Az [Interjú kérdések](Interjúkérdések) mappára kattintva találhatsz gyakori React interjúkérdéseket és azoknak a válaszait példákkal stb. Ezeket folyamatosan frissíteni fogom, ahogy haladunk előre a tanulmányokkal.
+
 ### Alapok
 
 Ahhoz, hogy kicsit bonyolultabb alkalmazásokat készítsünk elég lenne a javascript magában, de ez elég nagy programoknál könnyen kezelhetetlenné válhat. Itt jönnek képbe a különböző libraryk és keretrendszerek. A 3 legnagyobb ilyen frontend library/framework a React, az Angular és a VueJS. A továbbiakban a Reactról lesz szó, mivel ez talán a legelterjedtebb a legtöbb számítást nézve.
