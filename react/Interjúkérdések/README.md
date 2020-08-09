@@ -21,7 +21,9 @@
 
 1. ### Mi a React?
    A React egy **nyílt forráskódú frontend JavaScript könyvtár** amit frontend, legfőképp single page appok (SPA-k) fejlesztésére használnak. A React-et [Jordan Walke](https://github.com/jordwalke) találta ki, egy fejlesztő a Facebooknál. Az első alkalmazás ami Reactben készült az a Facebook híroldala (2011) és az Instagram (2012)
-   **[⬆ Back to Top](#tartalomjegyzék)**
+
+**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+
 2. ### Mik a React legfőbb tulajdonságai?
 
    A legfőbb tulajdonságok:
@@ -31,7 +33,7 @@
    - Egyirányú (**Unidirectional**) adatfolyást követ.
    - Újrafelhasználható (**Reusable/Composable**) komponenseket készíthetünk vele.
 
-   **[⬆ Back to Top](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 3. ### Mi a JSX?
 
@@ -51,7 +53,8 @@
    }
    ```
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+
+      **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 4. ### Mi a különbség az Element és a Component között?
 
@@ -98,7 +101,7 @@
      React.createElement("div", { id: "login-btn", onClick: onLogin }, "Login");
    ```
 
-   **[⬆ Back to Top](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 5. ### Hogyan csinálunk Reactban komponenseket?
 
@@ -122,20 +125,21 @@
       }
       ```
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+
+      **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 6. ### Mikor használjunk Osztály alapú komponenseket és mikor Függvénykomponenseket?
 
    Ha a komponensnek szüksége van **state-re vagy lifecycle metódusokra** akkor class komponenseket használjunk, másképp megteszi a függvénykomponens is.
    _Azonban, a React 16.8-as verziójától kezdve (Hook frissítés) használhatunk statet és lifecycle metódusokat függvénykomponensekben is. Tehát végsősoron preferencia kérdése._
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+**[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 7. ### What are Pure Components?
 
    React.PureComponent az ugyanaz mint a React.Component, annyi különbséggel, hogy a `shouldComponentUpdate()` metódust kezeli helyetted. Ha a propok vagy a state változik a PureComponent csinál egy shallow összehasonlítást mindkettőn. A Component azoknak nem ellenőriz automatikusan.
 
-   **[⬆ Back to Top](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 8. ### Mi a State a Reactban?
 
@@ -168,7 +172,7 @@
 
     A state hasonlít a propshoz, de privát és teljes mértékben a komponens módosítja és kezeli. Pl nem érheti el egy másik komponens, kivéve akkor, ha mi ezt explicit akarjuk.
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+**[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 9. ### Mik a propok?
 
@@ -192,13 +196,14 @@
    props.reactProp
    ```
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+**[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 10. ### Mi a különbség a state és a props között?
 
     A state és a props is JS objektumok. Mindkettő információt tárol, ami befolyásolja a komponensünk működését. Azonban a működésük és a céljuk teljesen eltér: a propok át vannak adva komponensünknek (mintha egy függvénynek paramétereket adnánk meg), a state pedig a komponens belsejében létrehozott, és változtatott érték (mintha egy függvényben változókat hoznánk létre)
 
-**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+
+       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 12. ### Miért ne módosítsuk a state-t közvetlenül?
 
@@ -218,7 +223,8 @@
 
     **Megjegyzés:** Direkt megadhatjuk a state-t a konstruktorban vagy használhatjuk a JS class-field deklarációs szintaxisát.
 
-**[⬆ Back to Top](#tartalomjegyzék)**
+
+       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 13. ### Mi a jelentősége egy callback függvénynek a `setState()` argumentumaként?
 
@@ -269,3 +275,5 @@
 
     3. A HTML-ben a fg végére oda kell tenni a `()` zárójeleket.
        A Reactban azonban nem szabad ezt odarakni, mert a rendereléskor automatikusan meg fog hívódni a függvény.
+
+       **[⬆ Vissza a tetejére](#tartalomjegyzék)**
