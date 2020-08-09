@@ -132,8 +132,7 @@
 
    Ha a komponensnek szüksége van **state-re vagy lifecycle metódusokra** akkor class komponenseket használjunk, másképp megteszi a függvénykomponens is.
    _Azonban, a React 16.8-as verziójától kezdve (Hook frissítés) használhatunk statet és lifecycle metódusokat függvénykomponensekben is. Tehát végsősoron preferencia kérdése._
-
-**[⬆ Vissza a tetejére](#tartalomjegyzék)**
+   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
 7. ### What are Pure Components?
 
