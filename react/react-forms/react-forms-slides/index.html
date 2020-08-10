@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--<title>React Forms &mdash; Demo  documentation</title>-->
+    <title>React Formok</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+
+    <link rel="stylesheet" href="_static/revealjs/css/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="_static/revealjs/css/theme/white.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/revealjs-sphinx.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <footer id="slide-footer"></footer>
+
+      <div class="slides">
+        <section>
+          <h2>React Formok</h2>
+
+          <div class="event"></div>
+        </section>
+
+        <section>
+          <section>
+            <h2>Célok</h2>
+          </section>
+          <section>
+            <h3>Célok</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">Készítsünk Formokat Reactban</li>
+                <li class="fragment">
+                  Értsük meg mik a Controlled Component-ek
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Forms</h2>
+          </section>
+          <section>
+            <h3>Forms</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  A HTML formok másképp működnek a többi DOM elemtől a Reactban
+                  is
+                  <ul>
+                    <li class="fragment">
+                      A form elemek alapjáraton tartalmaznak egy belső state-et
+                    </li>
+                    <li class="fragment">
+                      Például ez a HTML form elfogad egy sima nevet:
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="fragment docutils container">
+              <div class="highlight-html notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span><span class="p">&gt;</span>Full Name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Add!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Gondolkodjunk a State-ről</h3>
+            <div class="fragment docutils container">
+              <div class="highlight-html notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span><span class="p">&gt;</span>Full Name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Add!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+                </div>
+              </div>
+            </div>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Előnyös, ha van egy JS függvényünk, ami kezeli a formokat
+                  <ul>
+                    <li>
+                      kezeli az adat submitolását, azaz elküldését <em>és</em>
+                    </li>
+                    <li>
+                      van elérése az adathoz, amit a felhasználó megadott.
+                    </li>
+                  </ul>
+                </li>
+                <li class="fragment">
+                  A technika ennek megvalósítására a
+                  <em>controlled component-ek</em>.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Controlled Component</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  A HTML-ben a from elemek, mint az <cite>&lt;input&gt;</cite>,
+                  <cite>&lt;textarea&gt;</cite>, és <cite>&lt;select&gt;</cite>
+                  <span class="raw-reveal"><br /></span> tipikusan tartalmazzák
+                  a saját state-üket és kezelik azt.
+                </li>
+                <li class="fragment">
+                  A Reactban a változtatható adat mindig a <cite>state</cite>ben
+                  van a komponensek belsejében,
+                  <span class="raw-reveal"><br /></span> és kizárólag a
+                  <cite>setState()</cite> függvénnyel változtatható.
+                </li>
+                <li class="fragment">
+                  Hogyan használjuk a Reactot hogy kezeljük az input state-jét?
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>One Source of Truth</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Meg kell oldanunk azt hogy a React state legyen a “single
+                  source of truth”
+                </li>
+                <li class="fragment">
+                  React control-ok:
+                  <ul>
+                    <li>Mit <em>mutatunk</em> (a komponens value-ját)</li>
+                    <li>
+                      Mi történik, ha a felhasználó ír
+                      <em>(eltárolódik a state-ben)</em>
+                    </li>
+                  </ul>
+                </li>
+                <li class="fragment">
+                  Azok az input elemek, amik ilyen módon vannak kezelve
+                  “controlled component” néven futnak.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Példa Form komponens</h3>
+            <div class="fragment docutils container">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">class</span> <span class="nx">NameForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="c1">// default fullName is an empty string</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">fullName</span><span class="p">:</span> <span class="s">&#39;&#39;</span> <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleSubmit</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something with form data</span>
+  <span class="p">}</span>
+  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// runs on every keystroke event</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span><span class="p">&gt;</span>Full Name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;fullname&quot;</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">fullName</span><span class="p">}</span>
+          <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span>
+        <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Add!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Hogyan működik a controlled form?</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Mivel a value adattag az elemen van settelve, a kiírt adat
+                  mindig a <cite>this.state.fullName</cite> lesz — ezzel a React
+                  lesz a Single Source Of Truth.
+                </li>
+                <li class="fragment">
+                  Mivel a <cite>handleChange</cite> minden billentyű
+                  lenyomásánál lefut és firssíti a state-et, a kiírt adat is
+                  frissülni fog, ahogy a felhasználó typeol.
+                </li>
+                <li class="fragment">
+                  Egy controlled component esetén minden state változtatáshoz
+                  tartozni fog egy handler függvény. Ezáltal könnyű lesz
+                  ellenőrizni, azaz validálni az inputot.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3><cite>handleChange</cite> Method</h3>
+            <p>Itt a metódus, ami módosítja a statet az input alapján.</p>
+            <div class="fragment docutils container">
+              <div class="highlight-jsx notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kd">class</span> <span class="nx">NameForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+
+  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// runs on every keystroke</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="nx">fullName</span><span class="p">:</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Több input kezelése</h2>
+          </section>
+          <section>
+            <h3>ES2015 Review</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  ES2015 bevezetett pár objektum kiegészítést…
+                </li>
+                <li class="fragment">
+                  Ebbe beleértendő a lehetőseg, hogy objektumokat kreáljunk
+                  dinamikus key attribútúmmal, JS kifejezések alapján.
+                </li>
+                <li class="fragment">
+                  Ez a feature <cite>computed property name</cite> néven fut.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Computed Property Name</h3>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id4">
+                <div class="code-block-caption">
+                  <span class="caption-text">ES5</span>
+                </div>
+                <div class="highlight-javascript notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="kd">var</span> <span class="nx">catData</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">microchip</span> <span class="o">=</span> <span class="mi">1432345421</span>
+<span class="nx">catData</span><span class="p">[</span><span class="nx">microchip</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Blue Steele&quot;</span><span class="p">;</span>
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id5">
+                <div class="code-block-caption">
+                  <span class="caption-text">ES2015</span>
+                </div>
+                <div class="highlight-javascript notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="kd">let</span> <span class="nx">microchip</span> <span class="o">=</span> <span class="mi">1432345421</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">catData</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// propery computed inside the object literal</span>
+    <span class="p">[</span><span class="nx">microchip</span><span class="p">]</span><span class="o">:</span> <span class="s2">&quot;Blue Steele&quot;</span>
+<span class="p">};</span>
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Felhasználás React komponensekben</h3>
+            <p>
+              Ahelyett hogy minden külön inputra külön
+              <cite>onChange</cite> metódust készítsünk
+              <span class="raw-reveal"><br /></span> tudunk egy generikus
+              függvényt csinálni több inputra!
+            </p>
+          </section>
+          <section>
+            <h3>Több input kezelése</h3>
+            <p>
+              Ahhoz hogy több HTML inputot kezeljünk, adjuk hozzá a
+              <cite>name</cite> attribútumot minden JSX elemhez
+              <span class="raw-reveal"><br /></span> és hagyjuk, hogy a handler
+              fg kiválassza a megfelelő keyt a state-ben, hogy firssítse azt a
+              <cite>event.target.name</cite> alapján.
+            </p>
+            <div class="fragment docutils container">
+              <div class="highlight-js notranslate">
+                <div class="highlight">
+                  <pre><span></span><span class="kr">class</span> <span class="nx">YourComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+
+  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+<span class="hll">      <span class="p">[</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span><span class="o">:</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span>
+</span>    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+                </div>
+              </div>
+            </div>
+            <div class="fragment docutils container">
+              <ul class="simple">
+                <li>
+                  Ezt a módszert használva a key-ek a state-ben meg kell egyezzenek az input
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">name</span></code
+                  >
+                  attribútúmával teljesen!
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Több input kezelése</h3>
+            <p>A state:</p>
+            <div class="highlight-jsx notranslate">
+              <div class="highlight">
+                <pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">:</span> <span class="s">&quot;&quot;</span> <span class="p">};</span>
+</pre>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Több input kezelése</h3>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id6">
+                <div class="code-block-caption">
+                  <span class="caption-text"
+                    >demo/name-form-demo/src/NameForm.js</span
+                  >
+                </div>
+                <div class="highlight-jsx notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="kd">class</span> <span class="nx">NameForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>  <span class="c1">// ...</span>
+<span class="hll">  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="p">[</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">name</span><span class="p">]:</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span> <span class="p">});</span>
+</span><span class="hll">  <span class="p">}</span>
+</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
+
+          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;firstName&quot;</span><span class="p">&gt;</span>First:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;firstName&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;firstName&quot;</span>
+                 <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span>
+<span class="hll">                 <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span> <span class="p">/&gt;</span>
+</span>
+          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;lastName&quot;</span><span class="p">&gt;</span>Last:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;lastName&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lastName&quot;</span>
+                 <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">lastName</span><span class="p">}</span>
+<span class="hll">                 <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span> <span class="p">/&gt;</span>
+</span>          <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Add a new person!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// end</span>
+</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Adat átadása egy szülő komponensbe</h3>
+            <p>
+              Reactban általában lefelé folyik az adat. "Okos" szülő komponensek, minél egyszerűbb gyerek komponensekkel.
+            </p>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  De elterjedt a form komponenseknél, hogy kezelik a saját state-jüket...
+                </li>
+                <li class="fragment">
+                  De az okosabb szülő komponens általában rendelkezik egy
+                  <cite>doSomethingOnSubmit</cite> metódussal, hogy updatelje a state-et submitoláskor…
+                </li>
+                <li class="fragment">
+                  De mi történik, ha a szülő lefelé passzolja a
+                  <cite>doSomethingOnSubmit</cite> metódust, mint egy propot a gyerek komponensekhez
+                </li>
+                <li class="fragment">
+                  A gyerek komponens meghívja ezt a függvényt, ami a szülő komponensben változtatni fogja a state-et.
+                </li>
+                <li class="fragment">
+                  A gyerek így is keveset tud, az egyetlen dolog, amit tud az, hogy átad adatot a függvényen keresztül, amit kapott propként
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Bevásárló lista példa</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Parent Component: ShoppingList (kezeli a bevásárlólista elemeit)
+                </li>
+                <li class="fragment">
+                  Child Component: NewListItemForm (egy form, hogy új dolgokat adjunk a listához)
+                </li>
+              </ul>
+            </div>
+            <div class="compare docutils container">
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id7">
+                  <div class="code-block-caption">
+                    <span class="caption-text"
+                      >demo/shopping-list/src/ShoppingList.js</span
+                    >
+                  </div>
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">ShoppingList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="cm">/** Add new item object to cart. */</span>
+  <span class="nx">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">newItem</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">item</span><span class="p">,</span> <span class="nx">id</span><span class="p">:</span> <span class="nx">uuid</span><span class="p">()</span> <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="nx">items</span><span class="p">:</span> <span class="p">[...</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">,</span> <span class="nx">newItem</span><span class="p">]</span>
+    <span class="p">}));</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;ShoppingList&quot;</span><span class="p">&gt;</span>
+<span class="hll">      <span class="p">&lt;</span><span class="nt">NewListItemForm</span> <span class="na">addItem</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">addItem</span><span class="p">}/&gt;</span>
+</span>      <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderItems</span><span class="p">()}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span> 
+</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fragment docutils container">
+                <div class="literal-block-wrapper docutils container" id="id8">
+                  <div class="code-block-caption">
+                    <span class="caption-text"
+                      >demo/shopping-list/src/NewListItemForm.js</span
+                    >
+                  </div>
+                  <div class="highlight-jsx notranslate">
+                    <div class="highlight">
+                      <pre><span></span><span class="kd">class</span> <span class="nx">NewListItemForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="cm">/** Send {name, quantity} to parent</span>
+<span class="cm">   *    &amp; clear form. */</span>
+
+  <span class="nx">handleSubmit</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">evt</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">addItem</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">);</span>
+</span>    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">name</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">qty</span><span class="p">:</span> <span class="m">0</span> <span class="p">});</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Keys és UUID-k</h2>
+          </section>
+          <section>
+            <h3>UUID (Universal Unique ID)</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">
+                  Láttuk, hogy az iterációs indexet használhatjuk a key prop megadására, de ez egy rossz ötlet.
+                </li>
+                <li class="fragment">
+                  Nincs alapból egyedi kulcsunk? Használjunk egy könyvtáratm hogy csináljunk egy <em>uuid</em>-t
+                </li>
+                <li class="fragment">
+                  Universally unique identifier (UUID) egy mód, hogy teljesen egyedivé tegyük az infónkat
+                </li>
+                <li class="fragment">
+                  Telepítsük fel
+                  <code class="docutils literal notranslate"
+                    ><span class="pre">npm</span>
+                    <span class="pre">install</span>
+                    <span class="pre">uuid</span></code
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>UUID használata</h3>
+            <div class="fragment docutils container">
+              <div class="literal-block-wrapper docutils container" id="id9">
+                <div class="code-block-caption">
+                  <span class="caption-text"
+                    >demo/shopping-list/src/ShoppingList.js</span
+                  >
+                </div>
+                <div class="highlight-jsx notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="k">import</span> <span class="nx">uuid</span> <span class="nx">from</span> <span class="s">&#39;uuid/v4&#39;</span><span class="p">;</span>
+</pre>
+                  </div>
+                </div>
+              </div>
+              <div class="literal-block-wrapper docutils container" id="id10">
+                <div class="code-block-caption">
+                  <span class="caption-text"
+                    >demo/shopping-list/src/ShoppingList.js</span
+                  >
+                </div>
+                <div class="highlight-jsx notranslate">
+                  <div class="highlight">
+                    <pre><span></span><span class="kd">class</span> <span class="nx">ShoppingList</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">renderItems</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="hll">        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+</span>          <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;</span>
+            <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>:<span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">qty</span><span class="p">}</span>
+          <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">))}</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre>
+                  <!-- </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Uncontrolled component</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">You will almost never use it</li>
+                <li class="fragment">
+                  Some inputs and external libraries require it.
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Validation</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">Useful for UI</li>
+                <li class="fragment">
+                  <strong>Not an alternative to server side validation</strong>
+                </li>
+                <li class="fragment">
+                  <a
+                    class="reference external"
+                    href="https://jaredpalmer.com/formik/docs/overview"
+                    >Formik</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Looking Ahead</h2>
+          </section> -->
+          <!-- <section>
+            <h3>Coming Up</h3>
+            <div class="docutils container">
+              <ul class="simple">
+                <li class="fragment">Lifecycle methods</li>
+                <li class="fragment">AJAX with React</li>
+              </ul>
+            </div>
+          </section>
+        </section> -->
+      </div>
+    </div>
+
+    <script src="_static/revealjs/lib/js/head.min.js"></script>
+    <script src="_static/revealjs/js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controlsBackArrows: "faded",
+        progress: true,
+        slideNumber: true,
+        maxScale: 5,
+        width: 1280,
+        height: 800,
+        margin: 0.1,
+        transition: "slide",
+        dependencies: [
+          { src: "_static/revealjs/plugin/notes/notes.js", async: true },
+        ],
+      });
+      // External links should open in new window
+      var externalLinks = document.getElementsByClassName("external");
+      for (var i = 0; i < externalLinks.length; i++)
+        externalLinks[i].setAttribute("target", "_blank");
+    </script>
+  </body>
+</html>
