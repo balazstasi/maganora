@@ -224,7 +224,7 @@
 
     **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
-13. ### Mi a jelentősége egy callback függvénynek a `setState()` argumentumaként?
+12. ### Mi a jelentősége egy callback függvénynek a `setState()` argumentumaként?
 
     The callback function is invoked when setState finished and the component gets rendered. Since `setState()` is **asynchronous** the callback function is used for any post action.
     A callback függvény meghívásra kerül, ha a setState befejeződik, és a komponens renderelődik. Mivel a setState aszinkronos, a callback függvény minden **post** action-re használva van
@@ -240,7 +240,7 @@
 
     **[⬆ Vissza a tetejére](#tartalomjegyzék)**
 
-14. ### Mi a különbség a React és a HTML eseménykezelés között?
+13. ### Mi a különbség a React és a HTML eseménykezelés között?
 
     1. HTML-ben az esemény neve **kis betűvel** írandó:
 
@@ -277,3 +277,28 @@
 
 
         **[⬆ Vissza a tetejére](#tartalomjegyzék)**
+
+14. ### Hogyan adjunk át paramétereket egy event handlernek vagy egy callback-nek?
+
+    You can use an *arrow function* to wrap around an *event handler* and pass parameters:
+    Használhatunk arrow functiont, hogy körbezárjunk egy eseménykezelő fg-t és hogy átadhassunk paramétereket
+
+    ```jsx harmony
+    <button onClick={() => this.handleClick(id)} />
+    ```
+
+    Ez egyenértékű a bind hívásával `.bind`:
+
+    ```jsx harmony
+    <button onClick={this.handleClick.bind(this, id)} />
+    ```
+    Ezekem kívül arrow fg-eket is használhatunk:
+    ```jsx harmony
+    <button onClick={this.handleClick(id)} />
+    handleClick = (id) => () => {
+        console.log("Hello, your ticket number is", id)
+    };
+    ```
+
+
+	   **[⬆ Vissza a tetejére](#tartalomjegyzék)**
