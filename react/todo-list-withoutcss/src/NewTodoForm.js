@@ -12,6 +12,7 @@ export class NewTodoForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.createTodo({ ...this.state, id: uuid() });
+    this.setState({ task: "" });
   };
 
   handleChange = (evt) => {
@@ -24,7 +25,7 @@ export class NewTodoForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="task">New Todo</label>
+          <label htmlFor="task"></label>
           <input
             type="text"
             placeholder="Új teendő"
