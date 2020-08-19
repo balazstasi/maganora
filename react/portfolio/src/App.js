@@ -1,46 +1,60 @@
 import React, { Component } from "react";
-import Projects from './Projects';
-import SocialProfiles from "./SocialProfiles";
+import { Route, Link } from "react-router-dom";
 
+import RollDice from "./projects/roll-dice/RollDice";
+import Deck from "./projects/deck/Deck";
+import Glow from "./projects/glow/Glow";
+import About from "./About";
+
+import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { displayBio: false };
-    // nem szukseges ha nevtelen arrow functionoket hasnzalunk ( () => {} ), mert igy nem a fuggvenyen belul hivatkozik a thisre, hanem a class this-jere
-    // this.readMore = this.readMore.bind(this)
-    // this.readLess = this.readLess.bind(this)
-  }
-
-  toggleBio = () => {
-    this.setState({ displayBio: !this.state.displayBio })
-  }
-
   render() {
-    // feltetel ? mi van hha igaz : mi van hogyha hamis
-
     return (
-      <div>
-        <img className="profile" src="https://via.placeholder.com/200" alt="profilepic"></img>
-        <h1>Tasi Balazs vagyok</h1>
-        <p>Programozast oktatok ebben a percben</p>
-        <p>Szeretek uj dolgokat tanulni</p>
-        {this.state.displayBio ? (
-            <div>
-                <div>
-                  <p>Budapesten lakom</p>
-                  <p>Kedvenc keretrendszerem a VueJS</p>
-                  <p>De a React sokkal ismertebb</p>
-                </div>
-                {/* button tag predefinialt onClick metodusa: clickelesre lefut egy adott fuggveny */}
-                <button onClick={this.toggleBio}>Olvass kevesebbet</button>
+      <div className="App">
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <Link to="about" className="navbar-brand">
+                PORTFOLIO
+              </Link>
             </div>
-        ) : <button onClick={this.toggleBio}>Olvass tobbet</button>}
-        <hr></hr>
-        {/* JSX tag beszurodik a Projects class render metodusabol visszaterulo html/jsx struktura */}
-        <Projects />
-        <hr />
-        <SocialProfiles />
+            <ul className="nav navbar-nav">
+              <li>
+                <Link className="Link" to="/roll-dice">
+                  Roll Dice
+                </Link>
+              </li>
+              <li>
+                <Link className="Link" to="/glow">
+                  Glow Game
+                </Link>
+              </li>
+              <li>
+                <Link className="Link" to="/deck">
+                  Card Dealer
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div>
+          <Route path="/" exact>
+            <About />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/roll-dice">
+            <RollDice />
+          </Route>
+          <Route path="/deck">
+            <Deck />
+          </Route>
+          <Route path="/glow">
+            <Glow />
+          </Route>
+        </div>
       </div>
     );
   }

@@ -6,17 +6,14 @@ class SocialProfiles extends Component {
   render() {
     return (
       <div>
-        <h2>Kapcsolat</h2>
-        <div>
-          {SOCIAL_PROFILES.map((SOCIAL_PROFILE) => {
-            return (
-              <SocialProfile
-                key={SOCIAL_PROFILE.id}
-                socialProfile={SOCIAL_PROFILE}
-              />
-            );
-          })}
-        </div>
+        {SOCIAL_PROFILES.map((SOCIAL_PROFILE) => {
+          return (
+            <SocialProfile
+              key={SOCIAL_PROFILE.id}
+              socialProfile={SOCIAL_PROFILE}
+            />
+          );
+        })}
       </div>
     );
   }
