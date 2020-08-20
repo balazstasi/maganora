@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///home/balazstasi/Desktop/ReactJS%20alapjai.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>ReactJS</title>
+
+    <link rel="stylesheet" href="./ReactJS alapjai_files/pygments.css" type="text/css">
+    <link rel="stylesheet" href="./ReactJS alapjai_files/handouts-sphinx.css">
+
+    
+    <link href="./ReactJS alapjai_files/css" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+<div id="page-wrapper">
+    
+    <div id="page-content">
+        
+  <div class="section" id="reactjs">
+<h1>ReactJS</h1>
+<div class="section" id="goals">
+<h2>Célok</h2>
+<div class="section" id="id1">
+<div class="docutils container">
+<ul class="simple">
+<li>Mi a React? Célok és története</li>
+<li>Komponensek</li>
+<li>Egy szimpla React komponens kezelése</li><li>Rgy szimpla React komponens készítése</li>
+<li>JSX és Babel Röviden</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="front-end-frameworks">
+<h2>Front End keretrendszerek</h2>
+<div class="section" id="id2">
+<div class="docutils container">
+<ul class="simple">
+<li>Nagyobb JS könyvtárak</li>
+<li>Külön kezelhetjük a logikát a kinézettől</li>
+<li>Adnak egy szabályrendszert, pl. hogyan kell weboldalakat készíteni<ul>
+<li>“Így designolj egy JS appot!”</li>
+</ul>
+</li>
+<li>Gyakran: újrahasználhatjuk a kódunkat</li>
+<li>Gyakran: Templatelhetjük a HTML oldalunkat</li>
+</ul>
+</div>
+</div>
+<div class="section" id="popular-front-end-frameworks">
+<h3>Gyakran használt Front End könyvtárak</h3>
+<ul class="simple">
+<li>Angular</li>
+<li>Ember</li>
+<li>Vue</li>
+<li>React</li>
+</ul>
+<p>Rengeteg más van, de talán ezek a legelterjettebbek</p>
+<p>Sok különbség van közöttük, de rengeteg közös vonással rendelkeznek, ami miatt ha egyet megtanulsz, sokkal könnyebb lesz egy újat megtanulni</p>
+</div>
+</div>
+<div class="section" id="react">
+<h2>React</h2>
+<div class="section" id="id3">
+<a class="noprint reference internal image-reference" href="./ReactJS alapjai_files/react.svg"><img alt="_images/react.svg" class="noprint" src="./ReactJS alapjai_files/react.svg" width="25%"></a>
+<p>Facebook által fejlesztett és támogatott könytvár.</p>
+<ul class="simple">
+<li>Könnyűvé teszi, hogy újrahasznosítható komponenseket keszítsünk<ul>
+<li>Egy class-ba vagy függvénybe zárjuk az oldalunk logikáját és kinézetét</li>
+</ul>
+</li>
+<li>Sokkal könnyebbé teszi, hogy később változtassunk a már elkészült applikációnkon</li>
+</ul>
+</div>
+<div class="section" id="goal">
+<h3>Cél</h3>
+<a class="reference internal image-reference" href="./ReactJS alapjai_files/components.jpg"><img alt="_images/components.jpg" src="./ReactJS alapjai_files/components.jpg" style="width: 70%;"></a>
+</div>
+</div>
+<div class="section" id="components">
+<h2>Komponensek</h2>
+<div class="section" id="id4">
+<div class="compare docutils container">
+<div class="docutils container">
+<ul class="simple">
+<li>A fő építőelemei a Reactnak</li>
+<li>UI es logika összessége</li>
+<li>Class-ok vagy függvények, amik tudják hogy renderelődjenek HTML-lé</li>
+</ul>
+</div>
+<div class="docutils container">
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">(a bit like this)</span></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Dog</span> <span class="p">{</span>
+  <span class="nx">constructor</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="sb">`&lt;p&gt;</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="demo-hello">
+<h3>Demo: Hello</h3>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">demo/hello/index.html</span></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Demo: Hello<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="hll"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"root"</span><span class="p">&gt;</span> <span class="c">&lt;!-- component will go in this div --&gt;</span> <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span>
+  <span class="s">"https://unpkg.com/react/umd/react.development.js"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span>
+  <span class="s">"https://unpkg.com/react-dom/umd/react-dom.development.js"</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/babel-standalone"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"index.js"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/jsx"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="compare docutils container">
+<div class="docutils container">
+<p>A komponens egy React class vagy függvény a&nbsp;<span style="font-style: italic; font-weight: 700;">render&nbsp;</span>metódussal:</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">demo/hello/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi Everyone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="docutils container">
+<p>A komponensünket a HTML-hez a a következővel adjuk hozzá:&nbsp;<cite>ReactDOM.render</cite></p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">demo/hello/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nt">Hello</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="jsx">
+<h2>JSX</h2>
+<div class="section" id="id5">
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">demo/hello/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<span class="hll">    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi Everyone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+</span>  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="hll"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nt">Hello</span> <span class="p">/&gt;,</span>
+</span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<p>Mi ez a HTML a javascriptünkben?</p>
+<p>A JSX az HTML beleépítve a JS-be:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">score</span> <span class="o">&gt;</span> <span class="m">100</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>You win!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+<span class="p">}</span></pre></div></div><div class="docutils container">
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">score</span> <span class="o">&gt;</span> <span class="m">100</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>You win, <span class="p">{</span> <span class="nx">playerName</span> <span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>(A JS változót keresi aminek a neve&nbsp;<cite>playerName</cite>)</p>
+</div>
+</div>
+<div class="section" id="using-jsx">
+<h3>JSX használata</h3>
+<div class="docutils container">
+<ul class="simple">
+<li>A JSX az nem valid JavaScript<ul>
+<li>Át kell lennie ''transpileolva'' JavaScriptté</li>
+</ul>
+</li>
+<li>A <a class="reference external" href="https://babeljs.io/">Babel</a>&nbsp;erre jó</li>
+</ul>
+</div>
+</div>
+<div class="section" id="transpiling-jsx-in-browser">
+<h3>Transpielolás a böngészőben</h3>
+<div class="docutils container">
+<ul>
+<li><p class="first">Könnyű elkezdeni, semmit nem kell feltelepítenünk</p>
+</li>
+<li><p class="first">Töltsük be az önálló Babel könyvtárat:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span>
+  <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/babel-standalone"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Jelöljük meg a JSX-et&nbsp;<code class="docutils literal notranslate"><span class="pre">type="text/jsx"</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"index.js"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/jsx"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Olvassuk el a dokumntációt, hogy hogyan használjuk a command line-ban</p>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p>Babel használata command line-ban</p>
+<p>Könnyű JSX-et JS-té transpileolni ilyen módon a böngészőben, azonban ez nem kifizetődő valódi applikációk keszítéséhez: Kell kb 1 másodperc a lefutási időhöz, tehát lassú lenne, és kényelmetlen a felhasználóknak.</p>
+<p>Sokkal jobb ezt a command line-ban 1x megcsinálni és később felhasználni a már készen lévő JS fájlokat.</p>
+<p>Ehhez a következőket kell tenni:</p>
+<ol class="last arabic">
+<li><p class="first"><a class="reference external" href="http://npmjs.com/">npm</a>&nbsp;telepítése</p>
+</li>
+<li><p class="first">Babel React-hoz való telepítésének parancsa</p>
+<pre class="console literal-block">   $ <span class="cmd">npm install @babel/core @babel/cli @babel/preset-react</span>
+</pre>
+</li>
+<li><p class="first">Egy fájl átkonvertálása:</p>
+<pre class="console literal-block">$ <span class="cmd">node_modules/@babel/cli/bin/babel.js --presets @babel/react</span>
+     <span class="cmd">file.jsx &gt; file.js</span>
+</pre>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="serving-demo">
+<h3>Demo</h3>
+<p>Biztonsági okokból a Babel nem működik file:// scriptekkel</p>
+<p>Ezért egy szimpla statikus szerveren futtatjuk:</p>
+<pre class="console literal-block">$ <span class="cmd">python3 -m http.server</span>
+</pre>
+<p><em>http://localhost:8000/yourfile.html</em></p>
+</div>
+<div class="section" id="jsx-rules">
+<h3>JSX Szabályai</h3>
+<p>Szigorúbb mint a HTML, a JSX elemeknek a következő szabályokat be kell tartaniuk:</p>
+<ul class="simple">
+<li>Explicit záró tag: <code class="docutils literal notranslate"><span class="pre">&lt;b&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/b&gt;</span></code></li>
+<li>Vagy önzáró tag: <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">name="msg"</span> <span class="pre">/&gt;</span></code><ul>
+<li>NEM hagyhatjuk ki, mert syntax errort kapnánk</li></ul></li></ul></div>
+</div>
+<div class="section" id="layout">
+<h2>Layout</h2>
+<div class="section" id="id6">
+<div class="compare docutils container">
+<div class="docutils container">
+<p><span style="font-size: 14.4px; font-style: italic;">demo/hello/index.js</span><br></p><div class="literal-block-wrapper docutils container" id="id18">
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi Everyone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nt">Hello</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="docutils container">
+<p>Legtöbbször több komponensünk lesz, ezért nem jó őket 1 fájlban tartani, illendő minden komponenst külön fájlokban tartani.</p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nt">Hello</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<p>Konvenció: 1 komponens fáljonként, és a neve a fájlnév is ugyanaz</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">Hello.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi Everyone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="app">
+<h3>App</h3>
+<p>Konvencionális, hogy a top-level komponens neve:&nbsp;<cite>App</cite>.</p>
+<p>Ez rendereli a többi komponenst:</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">App.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">App</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Greetings!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Hello</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Goodbye</span><span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="docutils container">
+<ul class="simple">
+<li>Ezáltal a kód olvasói tudják hol kezdjék el</li>
+<li>Ez általában az egyetlen komponens, amit az index.js fájlban renderelünk</li>
+</ul>
+</div>
+</div>
+<div class="section" id="order-of-script-tags">
+<h3>Script tagek sorrendje</h3>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">demo/hello-2/index.html</span></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span>
+  <span class="s">"http://unpkg.com/react/umd/react.development.js"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span>
+  <span class="s">"http://unpkg.com/react-dom/umd/react-dom.development.js"</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"http://unpkg.com/babel-standalone"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="hll"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"Hello.js"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/jsx"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span class="hll"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"index.js"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/jsx"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></pre></div>
+</div>
+</div>
+<div class="docutils container">
+<p>Figyeljünk, hogyha nem importot használjunk minden fáljunk tartalmazzon egy&nbsp;<cite>script</cite> taget.</p>
+</div>
+</div>
+</div>
+<div class="section" id="properties">
+<h2>Properties</h2>
+<div class="section" id="id7">
+<p><strong>aka. Props</strong></p>
+<p>Egy hasznos komponens egy újrahasználható komponens.</p>
+<p>Ez gyakran azt jelenti hogy konfigurálhatóvá kell tennünk.</p>
+<div class="docutils container">
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">Hello.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi Everyone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="docutils container">
+<p>Jobb lenne ha a köszöntést konfigurálhatnánk.</p>
+</div>
+<p>A köszöntésünk nézzen ki mondjuk így:&nbsp;<em>Hi ______ from ______</em>.</p>
+<div class="docutils container">
+<p>Csináljunk két ''Tulajdonságot'', azaz propot:</p>
+<dl class="docutils">
+<dt>to</dt>
+<dd>Kit köszöntünk</dd>
+<dt>from</dt>
+<dd>Ki köszönt</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="demo-hello-2">
+<h3>Demo: Hello-2</h3>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">demo/hello-2/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<span class="hll">  <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"me"</span> <span class="na">from</span><span class="o">=</span><span class="s">"you"</span> <span class="p">/&gt;,</span>
+</span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Így hivatkozunk rá&nbsp;<cite>this.props.propName</cite>.</p>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">demo/hello-2/Hello.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Secret Message: <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="hll">        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">to</span><span class="p">}</span> from <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">from</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reusing-component">
+<h3>Komponensek újrahasználása</h3>
+<p>Egy komponesnt akárhányszor használhatunk:</p>
+<div class="compare docutils container">
+<div class="docutils container">
+<p>Különböző helyeken:</p>
+<div class="literal-block-wrapper docutils container" id="id26">
+<div class="code-block-caption"><span class="caption-text">index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"Kay"</span> <span class="na">from</span><span class="o">=</span><span class="s">"Kim"</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"me"</span> <span class="na">from</span><span class="o">=</span><span class="s">"you"</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"also"</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="docutils container">
+<p>Egy helyen többet:</p>
+<div class="literal-block-wrapper docutils container" id="id27">
+<div class="code-block-caption"><span class="caption-text">index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"Kay"</span> <span class="na">from</span><span class="o">=</span><span class="s">"Kim"</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"me"</span> <span class="na">from</span><span class="o">=</span><span class="s">"you"</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="docutils container">
+<p>Note <cite>div</cite> wrapper — React általában egyetlen top-level elemet renderel<em>.</em></p>
+</div>
+<div class="admonition note">
+<p><strong>Több top-level komponens renderelése</strong></p>
+<p class="last">A React 16-os verziója előtt nem volt lehetséges több komponenst egy körbezáró tag nélkül top-level renderelni. Most már ez lehetséges, de a szintaxias korántsem olyan tiszta és magától értetődő. Utána lehet nézni, de mi nem fogunk ezzel foglalkozni, mert nem érdemes.</p>
+</div>
+</div>
+<div class="section" id="properties-requirements">
+<h3>Properties feltételek</h3>
+<div class="docutils container">
+<ul>
+<li><p class="first">A propok azok a komponensünk konfigurálására vannak</p>
+</li>
+<li><p class="first">A propokat nem változtathatjuk a komponensen belül, erre a szó: immutable</p>
+</li>
+<li><p class="first">Lehetnek stringek</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">User</span> <span class="na">name</span><span class="o">=</span><span class="s">"Jane"</span> <span class="na">title</span><span class="o">=</span><span class="s">"CEO"</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Más típusokhoz kapcsos zárójeleket kell használnunk</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">User</span> <span class="na">name</span><span class="o">=</span><span class="s">"Jane"</span> <span class="na">salary</span><span class="o">=</span><span class="p">{</span> <span class="m">100000</span> <span class="p">}</span>
+    <span class="na">hobbies</span><span class="o">=</span><span class="p">{</span> <span class="p">[</span><span class="s">"bridge"</span><span class="p">,</span> <span class="s">"reading"</span><span class="p">,</span> <span class="s">"tea"</span><span class="p">]</span> <span class="p">}</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="using-properties">
+<h3>Propok használata</h3>
+<ul class="simple">
+<li><cite>this.props.propertyName</cite></li>
+<li>Nem változtathatjuk, csak megadhatunk újakat!!</li>
+</ul>
+</div>
+</div>
+<div class="section" id="conditionals-in-jsx">
+<h2>Kondicionálisak JSX-ben</h2>
+<div class="section" id="id8">
+<p><cite><span style="font-style: normal; font-weight: 400;">A&nbsp;</span>render()</cite>&nbsp;metódus visszatérhet:</p>
+<ul class="simple">
+<li><strong>egyetlen valid</strong>&nbsp;DOM objektumként (<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">&lt;div&gt;...&lt;/div&gt;</span></code>)</li>
+<li>DOM objektumok tömbjeként (ezt még hagyjuk egyelőre!)</li>
+<li><cite>null</cite> (<cite>undefined</cite> az nem oké!)</li>
+</ul>
+<div class="docutils container">
+<p>Akármilyen logikát használhatunk a&nbsp;<cite>render()</cite> metódusban:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Lottery</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">winner</span><span class="p">)</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>You win!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>You lose!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ternary">
+<h3>Ternary</h3>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Lottery</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>You <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">winner</span> <span class="p">?</span> <span class="s">"win"</span> <span class="p">:</span> <span class="s">"lose"</span><span class="p">}</span>!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="demo-slots">
+<h3>Demo: Slots!</h3>
+<div class="literal-block-wrapper docutils container" id="id28">
+<div class="code-block-caption"><span class="caption-text">demo/slots/Machine.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Machine</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span><span class="p">,</span> <span class="nx">s3</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">winner</span> <span class="o">=</span> <span class="p">(</span><span class="nx">s1</span> <span class="o">===</span> <span class="nx">s2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">s2</span> <span class="o">===</span> <span class="nx">s3</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">"Machine"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">s1</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">s2</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">s3</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+<span class="hll">        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You <span class="p">{</span><span class="nx">winner</span> <span class="p">?</span> <span class="s">"win!"</span> <span class="p">:</span> <span class="s">"lose!"</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id29">
+<div class="code-block-caption"><span class="caption-text">demo/slots/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">Machine</span> <span class="na">s1</span><span class="o">=</span><span class="s">"🍇" </span>s<span class="na">2=</span><span class="o">"</span><span class="s">🍇" s</span>3<span class="na">="</span><span class="o">🍇</span><span class="s">" /&gt;</span>,<span class="p"></span>
+<span class="p">  </span>doc<span class="nx">ument.ge</span><span class="p">t</span><span class="nx">ElementById("r</span><span class="p">o</span><span class="s">ot")</span>
+<span class="s">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="looping-in-jsx">
+<h2>Looping in JSX</h2>
+<div class="section" id="id9">
+<p>Nagyon gyakran&nbsp;<cite>array.map(fn)</cite> fg-t használunk, hogy egy tömb elemeit kirajzoljuk:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Messages</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">msgs</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">{</span><span class="nx">id</span><span class="p">:</span> <span class="m">1</span><span class="p">,</span> <span class="nx">text</span><span class="p">:</span> <span class="s">"Greetings!"</span><span class="p">},</span>
+      <span class="p">{</span><span class="nx">id</span><span class="p">:</span> <span class="m">2</span><span class="p">,</span> <span class="nx">text</span><span class="p">:</span> <span class="s">"Goodbye!"</span><span class="p">},</span>
+    <span class="p">];</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">{</span> <span class="nx">msgs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">m</span> <span class="o">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;{</span><span class="nx">m</span><span class="p">.</span><span class="nx">text</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;)</span> <span class="p">}</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="demo-friends">
+<h3>Demo: Friends!</h3>
+<div class="literal-block-wrapper docutils container" id="id30">
+<div class="code-block-caption"><span class="caption-text">demo/friends/Friend.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Friend</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">hobbies</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="hll">          <span class="p">{</span><span class="nx">hobbies</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">h</span> <span class="o">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;{</span><span class="nx">h</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;)}</span>
+</span>        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id31">
+<div class="code-block-caption"><span class="caption-text">demo/friends/index.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Friend</span> <span class="na">name</span><span class="o">=</span><span class="s">"Jessica"</span> <span class="na">hobbies</span><span class="o">=</span><span class="p">{[</span><span class="s">"Tea"</span><span class="p">,</span> <span class="s">"Frisbee"</span><span class="p">]}</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Friend</span> <span class="na">name</span><span class="o">=</span><span class="s">"Jake"</span> <span class="na">hobbies</span><span class="o">=</span><span class="p">{[</span><span class="s">"Chess"</span><span class="p">,</span> <span class="s">"Cats"</span><span class="p">]}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="default-props">
+<h2>Default Propok</h2>
+<div class="section" id="id10">
+<p>Definiálhatunk alapértelmezett propokat arra az esetre, ha a komponensünk nem kap propokat, <br>de szüksége lehet rá.</p>
+</div>
+<div class="section" id="demo-hello-3">
+<h3>Demo: Hello-3</h3>
+<div class="literal-block-wrapper docutils container" id="id32">
+<div class="code-block-caption"><span class="caption-text">demo/hello-3/Hello.js</span></div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Hello</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<span class="hll">  <span class="nx">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">    <span class="nx">from</span><span class="p">:</span> <span class="s">"Joel"</span><span class="p">,</span>
+</span><span class="hll">  <span class="p">};</span>
+</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">to</span><span class="p">}</span> from <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">from</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p><span style="font-size: 14.4px; font-style: italic;">demo/hello-3/index.js</span><br></p><div class="literal-block-wrapper docutils container" id="id33">
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"Students"</span> <span class="na">from</span><span class="o">=</span><span class="s">"Elie"</span> <span class="p">/&gt;</span>
+<span class="hll">    <span class="p">&lt;</span><span class="nt">Hello</span> <span class="na">to</span><span class="o">=</span><span class="s">"World"</span> <span class="p">/&gt;</span>
+</span>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s">"root"</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="styling-react">
+<h2>React stilizálása</h2>
+<div class="section" id="id11">
+<p>CSS classokat kaphatnak a JSX tagek.</p>
+<p>Mivel a&nbsp;<cite>class</cite> egy lefoglalt kulcsszó a Reactban, ez&nbsp;<cite>className</cite>&nbsp;szóval helyettesztendő:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Message</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">"urgent"</span><span class="p">&gt;</span>Emergency!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><cite><span style="font-style: normal; font-weight: 400;">Inline is használhatunk stílusokat, ilyenkor a&nbsp;</span>style</cite> egy JS objektumot vár:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Box</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">color</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">favoriteColor</span><span class="p">,</span>
+      <span class="nx">backgroundColor</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">otherColor</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">b</span> <span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">colors</span><span class="p">}&gt;{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">message</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="debugging-react">
+<h2>React Debuggolása</h2>
+<div class="section" id="id12">
+<p><a class="reference external" href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React Developer Tools</a></p>
+</div>
+</div>
+</div>
+
+
+
+    </div>
+</div>
+<script type="text/javascript" src="file:///home/balazstasi/Desktop/React%20Materials/02-introducing-jsx/Handout/_static/jquery.js"></script>
+<script type="text/javascript" src="file:///home/balazstasi/Desktop/React%20Materials/02-introducing-jsx/Handout/_static/underscore.js"></script>
+<script type="text/javascript" src="file:///home/balazstasi/Desktop/React%20Materials/02-introducing-jsx/Handout/_static/doctools.js"></script>
+<script type="text/javascript" src="file:///home/balazstasi/Desktop/React%20Materials/02-introducing-jsx/Handout/_static/language_data.js"></script> 
+
+</body></html>

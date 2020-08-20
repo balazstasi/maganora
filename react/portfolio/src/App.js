@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 
 import RollDice from "./projects/roll-dice/RollDice";
 import Deck from "./projects/deck/Deck";
-import Glow from "./projects/glow/Glow";
+import CoinFlipper from "./projects/coin/CoinFlipper";
 import About from "./About";
 
 import "./App.css";
@@ -26,8 +26,8 @@ class App extends Component {
                 </Link>
               </li>
               <li>
-                <Link className="Link" to="/glow">
-                  Glow Game
+                <Link className="Link" to="/coin">
+                  Coin Flipper
                 </Link>
               </li>
               <li>
@@ -51,8 +51,8 @@ class App extends Component {
           <Route path="/deck">
             <Deck />
           </Route>
-          <Route path="/glow">
-            <Glow />
+          <Route path="/coin">
+            <CoinFlipper />
           </Route>
         </div>
       </div>
