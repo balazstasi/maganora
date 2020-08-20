@@ -1,4 +1,3 @@
-
 # Webfejlesztés magánóra
 
 ## Hasznos linkek
@@ -15,7 +14,7 @@ Ezek a linkek az ELTE webfejlesztés és webprogrmaozás tárgyainak curriculum�
 
 # Progresszív landing page
 
-Az óra anyaga a [progressive](progressive) mappában elérhető. Egy alap bootstrap landing page különböző funkciói vannak implementálva. A feladatleírást [itt](progressive/feladatok.md) találod.
+Az óra anyaga a [progressive](https://github.com/balazstasi/webdev-ora/tree/master/progressive) mappában elérhető. Egy alap bootstrap landing page különböző funkciói vannak implementálva. A feladatleírást [itt](progressive/feladatok.md) találod.
 
 # Frontend webfejlesztés
 
@@ -29,7 +28,7 @@ Azonban ez nagyobb projektekben nem célravezető, mivel rengeteg libraryt kell 
 
 ## NodeJS
 
-A Node egy teljesen új korszakot hozott a JS világába. A lényege, hogy JavaScriptet nem csak böngészőkben tudunk futtatni, hanem a számítógépen is, és így el tudjuk érni annak a különböző API-jait. 
+A Node egy teljesen új korszakot hozott a JS világába. A lényege, hogy JavaScriptet nem csak böngészőkben tudunk futtatni, hanem a számítógépen is, és így el tudjuk érni annak a különböző API-jait.
 
 Itt jön képbe a [Node](https://nodejs.dev/) és a Node Package Manager, azaz az npm. Ezt ha feltelepítjük, elég a már létező, vagy teljesen új projekt mappánkban megnyitnunk egy terminal (Windowson cmd.exe vagy powershell.exe) ablakot, `npm init`, követjük az utasításokat, és máris generálódott egy package.json fájl. Itt tárolódnak különböző adatok a projektünkről.
 
@@ -38,6 +37,7 @@ A fontos azonban, hogy innen kezdve már használhatjuk az [NPM](https://medium.
 ## React
 
 ### Alapok
+
 A mi esetünkben a React-ra van szükség. Feltelepítjük tehát a következő paranccsal `npm install react react-dom`. Így máris a projektünkbe hozzá lett adva a React, amit megnézhetünk a **package.json** dependencies adattagjában. Megfigyelhetünk még egy **node_modules** mappát is, ami az összes függőséget tartalmazza, amire szüksége van a projektünknek. A Reactról a továbbiakban az órán elhangzott dolgokról az anyag a [react](react) mappán belül lesz.
 Az npm-es telepítés, és manuális beállítás helyett a React saját programját fogjuk használni, a **create-react-app**ot. Az `npx create-react-app <<projekt név>>` paranccsal létre tudunk hozni egy alap React projektet, teljesen bekonfigurálva, tehát foglakozhatunk a lényeges dolgokkal egyből.
 
