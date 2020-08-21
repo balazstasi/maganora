@@ -36,7 +36,7 @@ A fontos azonban, hogy innen kezdve már használhatjuk az [NPM](https://medium.
 
 ## React
 
-[Itt](http://balazstasi.web.elte.hu/ReactJS%20alapjai.html) olvashatsz egy nagyobb összegzést a React alapjairól
+[Itt](http://balazstasi.web.elte.hu/React/Basics/) olvashatsz egy nagyobb összegzést a React alapjairól
 
 ### Alapok
 
