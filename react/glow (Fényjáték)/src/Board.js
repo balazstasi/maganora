@@ -77,16 +77,16 @@ class Board extends Component {
     }
     // TODO: a cellát és le, fel, jobbra, balra levőt is kapcsoljuk át
     flipCell(y, x); //Flip initial cell
-    flipCell(y, x - 1); //flip left
-    flipCell(y, x + 1); //flip right
-    flipCell(y - 1, x); //flip below
-    flipCell(y + 1, x); //flip above
+    flipCell(y, x - 1); //flip balra
+    flipCell(y, x + 1); //flip jobbra
+    flipCell(y - 1, x); //flip fenti
+    flipCell(y + 1, x); //flip lenti
 
     // nyerés: minden cella ki van kapcsolva
     // TODO: határozd meg, hogy nyertünk-e
-    let hasWon = board.every((row) => row.every((cell) => !cell));
+    let hasWon = board.every((row) => row.every((cell) => cell === false));
 
-    this.setState({ board: board, hasWon: hasWon });
+    this.setState({ board, hasWon });
   }
 
   /** Rendereljük a győztes szöveget vagy magát a táblát, ha még nem nyertünk. */

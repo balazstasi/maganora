@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-
 import RollDice from "./projects/roll-dice/RollDice";
 import Deck from "./projects/deck/Deck";
 import CoinFlipper from "./projects/coin/CoinFlipper";
