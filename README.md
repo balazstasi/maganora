@@ -38,6 +38,10 @@ A fontos azonban, hogy innen kezdve már használhatjuk az [NPM](https://medium.
 
 [Itt](http://balazstasi.web.elte.hu/React/Basics/) olvashatsz egy nagyobb összegzést a React alapjairól
 
+### Feladatok
+
+Az önálló munkát igénylő programozási feladatokat ezután a [Feladatok](Feladatok) mappába fogom rakni.
+
 ### Alapok
 
 A mi esetünkben a React-ra van szükség. Feltelepítjük tehát a következő paranccsal `npm install react react-dom`. Így máris a projektünkbe hozzá lett adva a React, amit megnézhetünk a **package.json** dependencies adattagjában. Megfigyelhetünk még egy **node_modules** mappát is, ami az összes függőséget tartalmazza, amire szüksége van a projektünknek. A Reactról a továbbiakban az órán elhangzott dolgokról az anyag a [react](react) mappán belül lesz.
