@@ -40,7 +40,7 @@ A fontos azonban, hogy innen kezdve már használhatjuk az [NPM](https://medium.
 
 ### Feladatok
 
-Az önálló munkát igénylő programozási feladatokat ezután a [Feladatok](Feladatok) mappába fogom rakni.
+Az önálló munkát igénylő programozási feladatokat ezután a [Feladatok](react/Feladatok) mappába fogom rakni.
 
 ### Alapok
 
