@@ -33,10 +33,11 @@ export default function ExerciseText() {
           Szerkeszd meg a <code>Counter</code> komponenst úgy, hogy megkapja az{" "}
           <code>onIncrement</code> és az <code>onDecrement</code> callback-eket,
           mint <strong>propokat</strong>, és biztosítsd, hogy külön-külön
-          növeljék a számlálók értékét! Mindegyik callback egyetlen{" "}
+          növeljék a számlálók értékét! Mindegyik callback egy{" "}
           <strong>integer</strong> számot kell kapjon paraméterül, ami az a
-          mennyiség, amennyivel növelni akarjuk a számláló meglévő értékét!
-          (Tipp: használj <code>this.forceupdate()</code>-ot!)
+          mennyiség, amennyivel növelni akarjuk a számláló meglévő értékét! Ha
+          szükséges használhatsz egyéb paramétereket is! (Tipp: használj{" "}
+          <code>this.forceupdate()</code>-ot!)
         </li>
         <li>
           Helyezd át a globális <code>data</code> tömböt a komponens{" "}
@@ -64,8 +65,7 @@ export default function ExerciseText() {
             </li>
             <li>
               adj meg a kettő eddigi helyett egyetlen <code>onChange</code>{" "}
-              <strong>callback propot</strong> ami egy <strong>integer</strong>{" "}
-              paramétert vár
+              <strong>callback propot</strong>
             </li>
             <li>
               biztosítsd, hogy így is az összes <code>Counter</code> ugyanúgy
