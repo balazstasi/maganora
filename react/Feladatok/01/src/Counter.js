@@ -8,10 +8,10 @@ export class Counter extends Component {
       <div className="counter">
         <b>{value}</b>
         <div className="counter-controls">
-          <button type="button" class="btn btn-danger">
+          <button type="button" className="btn btn-danger">
             -
           </button>
-          <button type="button" class="btn btn-success">
+          <button type="button" className="btn btn-success">
             +
           </button>
         </div>
