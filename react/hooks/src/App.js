@@ -5,12 +5,13 @@ import Clicker from "./Clicker";
 import Toggler from "./Toggler";
 import SimpleFormHooks from "./SimpleFormHooks";
 import SimpleFormInputHooks from "./SimpleFormInputHooks";
+import SWMovies from "./SWMovies";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SimpleFormInputHooks />
+      <SWMovies />
     </div>
   );
 }
