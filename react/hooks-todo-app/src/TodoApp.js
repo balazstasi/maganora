@@ -5,13 +5,16 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
+import useTodoState from "./hooks/useTodoState";
 
 export default function TodoApp() {
   const initialTodos = [
     { id: 1, task: "Clean", completed: false },
     { id: 2, task: "Walk dog", completed: false },
   ];
-  const [todos, setTodos] = useState(initialTodos);
+  const { todos, addTodo, removeTodo, toggleTodo } = useTodoState(initialTodos);
+
   return (
     <Paper
       style={{
@@ -27,7 +30,16 @@ export default function TodoApp() {
           <Typography color="inherit">TODO MADE WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
-      <TodoList todos={todos} />
+      <Grid container justify="center" style={{ marginTop: "1rem" }}>
+        <Grid item xs={11} md={8} lg={4}>
+          <TodoForm addTodo={addTodo} />
+          <TodoList
+            todos={todos}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+          />
+        </Grid>
+      </Grid>
     </Paper>
   );
 }
