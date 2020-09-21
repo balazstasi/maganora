@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Expanded");
+
+html,
+body {
+  font-family: "Encode Sans Expanded", sans-serif;
+  height: 100%;
+  width: 200vh;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.node_modules {
+  color: red;
+}
