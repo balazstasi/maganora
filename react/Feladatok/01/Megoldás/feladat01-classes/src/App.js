@@ -1,13 +1,13 @@
 import React from "react";
-import ExerciseText from "./ExerciseText";
 import Total from "./Total";
+import ExerciseText from "./ExerciseText";
 
 function App() {
   return (
-    <>
+    <div>
       <ExerciseText />
       <Total />
-    </>
+    </div>
   );
 }
 

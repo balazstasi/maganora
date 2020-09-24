@@ -11,19 +11,19 @@ export default function ExerciseText() {
         <strong>Utasítások:</strong> Oldd meg az alábbi kérések szerint a
         feladatot, és küldd el nekem a kész projektet egy .zip-be csomagolva{" "}
         <a href="mailto:balazstasi@tuta.io">emailben</a>.<br></br>
-        <p className="node_modules">
-          El ne felejtsd előtte kitörölni a node_modules mappát!!!
-        </p>
         <br></br>A projektet, a mappába be cd-zve, az{" "}
         <code>npm install && npm start</code> paranccsal tudod elindítani.
       </p>
+      <div className="node_modules">
+        El ne felejtsd előtte kitörölni a node_modules mappát!!!
+      </div>
       <p>
         Két db komponens van az applikációban: <strong>Counter</strong> és{" "}
         <strong>App</strong>. <br></br>A lenti utasítások segítenek majd a kód
         szerkesztésében, komponensek hozzáadásában, hogy megfeleljenek a
         kéréseknek.
       </p>
-      <ol class="instructions">
+      <ol className="instructions">
         <li>
           A <code>data</code> tömb szerint renderelj le 3 darab{" "}
           <code>Counter</code>t! Használd fel <strong>propként</strong> az
@@ -33,11 +33,10 @@ export default function ExerciseText() {
           Szerkeszd meg a <code>Counter</code> komponenst úgy, hogy megkapja az{" "}
           <code>onIncrement</code> és az <code>onDecrement</code> callback-eket,
           mint <strong>propokat</strong>, és biztosítsd, hogy külön-külön
-          növeljék a számlálók értékét! Mindegyik callback egy{" "}
+          növeljék a számlálók értékét! Mindegyik callback egyetlen{" "}
           <strong>integer</strong> számot kell kapjon paraméterül, ami az a
-          mennyiség, amennyivel növelni akarjuk a számláló meglévő értékét! Ha
-          szükséges használhatsz egyéb paramétereket is! (Tipp: használj{" "}
-          <code>this.forceupdate()</code>-ot!)
+          mennyiség, amennyivel növelni akarjuk a számláló meglévő értékét!
+          (Tipp: használj <code>this.forceUpdate()</code>-ot!)
         </li>
         <li>
           Helyezd át a globális <code>data</code> tömböt a komponens{" "}
@@ -65,7 +64,8 @@ export default function ExerciseText() {
             </li>
             <li>
               adj meg a kettő eddigi helyett egyetlen <code>onChange</code>{" "}
-              <strong>callback propot</strong>
+              <strong>callback propot</strong> ami egy <strong>integer</strong>{" "}
+              paramétert vár
             </li>
             <li>
               biztosítsd, hogy így is az összes <code>Counter</code> ugyanúgy
