@@ -1,8 +1,17 @@
 import React, { Component } from "react";
+import "./Die.css";
 
 export class Die extends Component {
   render() {
-    return <div></div>;
+    return (
+      <button
+        className="Die"
+        style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
+        onClick={this.props.handleClick}
+      >
+        {this.props.value}
+      </button>
+    );
   }
 }
 
