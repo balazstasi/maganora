@@ -12,7 +12,8 @@ export class Game extends Component {
     super(props);
     this.state = {
       // [undefined, undefined, undefined, undefined, undefined]
-      dice: Array.from({ length: NUM_DICE }),
+      dice: new Array(NUM_DICE),
+      // dice: Array.from({ length: NUM_DICE }),
       // [false, false, false, false, false]
       locked: Array(NUM_DICE).fill(false),
       // Jelöli a hátralévő dobások számát: ez alapból 3
