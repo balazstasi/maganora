@@ -12,7 +12,7 @@ export class Game extends Component {
     super(props);
     this.state = {
       // [undefined, undefined, undefined, undefined, undefined]
-      dice: new Array(NUM_DICE),
+      dice: new Array(NUM_DICE).fill(undefined),
       // dice: Array.from({ length: NUM_DICE }),
       // [false, false, false, false, false]
       locked: Array(NUM_DICE).fill(false),
