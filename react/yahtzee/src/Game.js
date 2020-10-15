@@ -36,6 +36,7 @@ export class Game extends Component {
     };
     this.roll = this.roll.bind(this);
     this.toggleLocked = this.toggleLocked.bind(this);
+    this.doScore = this.doScore.bind(this);
   }
 
   // Ezzel a függvénnyel fogunk dobni
@@ -71,11 +72,26 @@ export class Game extends Component {
     }));
   }
 
+  doScore(rulename, ruleFn) {
+    // a ruleFn függvényt lefuttatjuk a dice tömbre, tehát a dobókockákra
+    // és hozzáadjuk majd a megfelelő pontot egy-egy szabályhoz
+    this.setState((oldState) => ({
+      scores: {
+        ...oldState.scores,
+        // a szögletes zárójelbe beleírt változónév értéke behelyettesítődik, mint kulcs
+        [rulename]: ruleFn(this.state.dice),
+      },
+      rollsLeft: NUM_ROLLS + 1,
+      locked: Array(NUM_DICE).fill(false),
+    }));
+    this.roll();
+  }
+
   render() {
     return (
       <div className="Game">
         <header className="Game-header">
-          <h1 className="App-title">Kockapóker!</h1>
+          <h2 className="App-title">Kockapóker!</h2>
           <section className="Game-dice-section">
             <Dice
               dice={this.state.dice}
@@ -95,7 +111,7 @@ export class Game extends Component {
             </div>
           </section>
         </header>
-        <ScoreTable />
+        <ScoreTable doScore={this.doScore} scores={this.state.scores} />
       </div>
     );
   }
