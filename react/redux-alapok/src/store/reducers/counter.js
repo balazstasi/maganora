@@ -1,11 +1,10 @@
-import * as actionTypes from "./actions";
+import * as actionTypes from "../actions";
 
 const initialState = {
   counter: 0,
-  prevActions: [],
 };
 
-const reducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
   // if (action.type === "INCREMENT") {
   //   return {
   //     counter: state.counter + 1,
@@ -51,4 +50,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export default reducer;
+export default counterReducer;
