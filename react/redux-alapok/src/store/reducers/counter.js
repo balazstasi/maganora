@@ -1,30 +1,10 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actions";
 
 const initialState = {
   counter: 0,
 };
 
 const counterReducer = (state = initialState, action) => {
-  // if (action.type === "INCREMENT") {
-  //   return {
-  //     counter: state.counter + 1,
-  //   };
-  // }
-  // if (action.type === "DECREMENT") {
-  //   return {
-  //     counter: state.counter - 1,
-  //   };
-  // }
-  // if (action.type === "ADD") {
-  //   return {
-  //     counter: state.counter + action.payload.value,
-  //   };
-  // }
-  // if (action.type === "SUBTRACT") {
-  //   return {
-  //     counter: state.counter - action.payload.value,
-  //   };
-  // }
   // eslint-disable-next-line default-case
   switch (action.type) {
     case actionTypes.INCREMENT:
@@ -39,12 +19,12 @@ const counterReducer = (state = initialState, action) => {
     case actionTypes.ADD:
       return {
         ...state,
-        counter: state.counter + action.payload.value,
+        counter: state.counter + action.value,
       };
     case actionTypes.SUBTRACT:
       return {
         ...state,
-        counter: state.counter - action.payload.value,
+        counter: state.counter - action.value,
       };
   }
   return state;
