@@ -1,7 +1,6 @@
 {
   "name": "rock-paper-scissors",
   "version": "0.1.0",
-  "homepage": "http://tommyjl.github.io/react-rock-paper-scissors",
   "private": true,
   "dependencies": {
     "prop-types": "^15.6.0",
