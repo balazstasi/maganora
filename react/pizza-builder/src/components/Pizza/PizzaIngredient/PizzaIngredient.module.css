@@ -1,0 +1,15 @@
+.pizzaBase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 487px;
+  height: 468px;
+}
+
+.pizzaTopping {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  width: 405px;
+  height: 405px;
+}

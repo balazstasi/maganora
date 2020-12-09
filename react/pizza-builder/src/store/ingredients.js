@@ -1,9 +1,9 @@
 const INGREDIENTS = {
   sauces: {
-    Marinara: { imgUrl: "/sauces/marinara.png", price: 1000 },
-    BBQ: { imgUrl: "/sauces/bbq.png", price: 1200 },
-    Ranch: { imgUrl: "/sauces/ranch.png", price: 1100 },
-    HotSauce: { name: "HotSauce", imgUrl: "/sauces/hotsauce.png", price: 1000 },
+    Marinara: { imgUrl: "./sauces/marinara.png", price: 1000 },
+    BBQ: { imgUrl: "./sauces/bbq.png", price: 1200 },
+    Ranch: { imgUrl: "./sauces/ranch.png", price: 1100 },
+    HotSauce: { imgUrl: "./sauces/hotsauce.png", price: 1000 },
   },
   cheeses: {
     Cheddar: { imgUrl: "./cheese/cheddar.png", price: 500 },

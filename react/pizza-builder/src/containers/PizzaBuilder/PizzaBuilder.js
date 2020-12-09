@@ -1,5 +1,15 @@
 import React from "react";
+import classes from "./PizzaBuilder.module.css";
+import Pizza from "components/Pizza/Pizza";
+import BuildControls from "components/UI/BuildControls";
 
 export default function PizzaBuilder() {
-  return <div>Builder works!</div>;
+  return (
+    <>
+      <div className={classes.pizzaBuilder}>
+        <Pizza />
+      </div>
+      <BuildControls />
+    </>
+  );
 }

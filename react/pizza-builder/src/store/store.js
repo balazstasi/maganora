@@ -2,9 +2,12 @@ import React, { createContext, useReducer } from "react";
 import Reducer from "./reducer";
 
 const initialState = {
-  sauce: undefined,
-  cheese: undefined,
-  toppings: [],
+  sauce: { name: "HotSauce", imgUrl: "/sauces/hotsauce.png", price: 1000 },
+  cheese: { name: "Cheddar", imgUrl: "./cheese/cheddar.png", price: 500 },
+  toppings: [
+    { name: "Bacon", imgUrl: "./toppings/bacon.png", price: 300 },
+    { name: "Chicken", imgUrl: "./toppings/chicken.png", price: 500 },
+  ],
   totalPrice: 0,
   pizzas: [],
 };
