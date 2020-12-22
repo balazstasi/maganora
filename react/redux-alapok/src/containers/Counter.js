@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { connect } from "react-redux";
 import CounterControl from "../components/CounterControl/CounterControl";
 import CounterOutput from "../components/CounterOutput/CounterOutput";
@@ -9,6 +9,7 @@ import {
   subtract,
   storeResult,
   deleteResult,
+  INCREMENT,
 } from "../store/actions/actions";
 
 export class Counter extends Component {
@@ -59,7 +60,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrement: () => dispatch(increment()),
+    // az increment, decrement stb fg-ek azok az actions.js fajlban levo action creatorok
+    onIncrement: () => dispatch(),
     onDecrement: () => dispatch(decrement()),
     onAdd: () => dispatch(add(5)),
     onSubtract: () => dispatch(subtract(15)),

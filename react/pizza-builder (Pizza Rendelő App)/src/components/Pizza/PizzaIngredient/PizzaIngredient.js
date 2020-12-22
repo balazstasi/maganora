@@ -5,12 +5,10 @@ export default function PizzaIngredient({ type, data, i }) {
   return (
     <>
       {type === "base" && (
-        // ez a process... valtozo a public mappara hivatkozo beepitett konstans
-        // magyarul ezzel megyunk a public mappaba
         <img
           className={classes.pizzaBase}
-          src={process.env.PUBLIC_URL + "base/base.png"}
-          alt="Pizza alap"
+          src={process.env.PUBLIC_URL + "./base.png"}
+          alt="Pizza Base"
           z-index={-3}
         />
       )}
@@ -18,7 +16,7 @@ export default function PizzaIngredient({ type, data, i }) {
         <img
           className={classes.pizzaTopping}
           src={process.env.PUBLIC_URL + data.imgUrl}
-          alt={data.name}
+          alt="Pizza Sauce"
           z-index={-2}
         />
       )}
@@ -26,7 +24,7 @@ export default function PizzaIngredient({ type, data, i }) {
         <img
           className={classes.pizzaTopping}
           src={process.env.PUBLIC_URL + data.imgUrl}
-          alt={data.name}
+          alt="Pizza Sauce"
           z-index={-1}
         />
       )}
@@ -34,7 +32,7 @@ export default function PizzaIngredient({ type, data, i }) {
         <img
           className={classes.pizzaTopping}
           src={process.env.PUBLIC_URL + data.imgUrl}
-          alt={data.name}
+          alt="asd"
           z-index={i}
         />
       )}

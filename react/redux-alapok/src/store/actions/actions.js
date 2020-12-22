@@ -31,6 +31,7 @@ export const subtract = (value) => {
   };
 };
 
+// redux-thunk segitsegevel mukodik
 const saveResult = (result) => {
   return {
     type: STORE_RESULT,
@@ -45,6 +46,7 @@ export const storeResult = (result) => {
     }, 2000);
   };
 };
+//
 
 export const deleteResult = (resultId) => {
   return {

@@ -31,6 +31,7 @@ const logger = (store) => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// composeEnhancers - cisnal egy nagy middleware fg-t a loggerbol es a thunkbol
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(logger, thunk))

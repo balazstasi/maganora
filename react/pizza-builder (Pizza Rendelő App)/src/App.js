@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import Layout from "./components/Layout/Layout";
-import PizzaBuilder from "./containers/PizzaBuilder/PizzaBuilder";
-import { Context } from "./store/store";
+import Layout from "components/Layout/Layout";
+import PizzaBuilder from "containers/PizzaBuilder/PizzaBuilder";
+import { Context } from "store/store";
 
 function App() {
-  const [state, dispatch] = useContext(Context);
+  const [state] = useContext(Context);
 
   useEffect(() => {
     console.log(state);

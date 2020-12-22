@@ -1,9 +1,9 @@
 const INGREDIENTS = {
   sauces: {
-    Marinara: { imgUrl: "/sauces/marinara.png", price: 1000 },
-    BBQ: { imgUrl: "/sauces/bbq.png", price: 1200 },
-    Ranch: { imgUrl: "/sauces/ranch.png", price: 1100 },
-    HotSauce: { name: "HotSauce", imgUrl: "/sauces/hotsauce.png", price: 1000 },
+    Marinara: { imgUrl: "./sauces/marinara.png", price: 1000 },
+    BBQ: { imgUrl: "./sauces/bbq.png", price: 1200 },
+    Ranch: { imgUrl: "./sauces/ranch.png", price: 1100 },
+    HotSauce: { imgUrl: "./sauces/hotsauce.png", price: 1000 },
   },
   cheeses: {
     Cheddar: { imgUrl: "./cheese/cheddar.png", price: 500 },
@@ -17,7 +17,7 @@ const INGREDIENTS = {
     Parmesan: { imgUrl: "./cheese/parmesan.png", price: 800 },
   },
   toppings: {
-    Bacon: { name: "bacon", imgUrl: "./toppings/bacon.png", price: 300 },
+    Bacon: { imgUrl: "./toppings/bacon.png", price: 300 },
     Chicken: { imgUrl: "./toppings/chicken.png", price: 500 },
     Ham: { imgUrl: "./toppings/ham.png", price: 400 },
     Mushrooms: { imgUrl: "./toppings/mushrooms.png", price: 300 },
