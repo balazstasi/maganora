@@ -6,19 +6,23 @@ import classes from "./BuildControls.module.css";
 
 export default function BuildControls() {
   const [state, dispatch] = useContext(Context);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
-    console.log(errors);
     console.log(data);
-    dispatch({ type: "SET_SAUCE", payload: INGREDIENTS.sauces[data["Szósz"]] });
-    dispatch({
-      type: "SET_CHEESE",
-      payload: INGREDIENTS.cheeses[data["Sajt"]],
-    });
-    for (let topping of data["Feltétek"]) {
+  };
+
+  const check = (event) => {
+    const toppingName = event.target.value;
+    if (state.toppings.find((topping) => topping.name === toppingName)) {
+      dispatch({
+        type: "REMOVE_TOPPING",
+        payload: { ...INGREDIENTS.toppings[toppingName], name: toppingName },
+      });
+    } else {
       dispatch({
         type: "ADD_TOPPING",
-        payload: INGREDIENTS.toppings[topping],
+        payload: { ...INGREDIENTS.toppings[toppingName], name: toppingName },
       });
     }
   };
@@ -27,51 +31,78 @@ export default function BuildControls() {
     <div>
       <form
         id="sauces"
-        className={classes.form}
+        style={{ "margin-left": "40%" }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {Object.keys(INGREDIENTS.sauces).map((sauce) => (
-          <React.Fragment key={sauce}>
-            <input
-              id={sauce}
-              value={sauce}
-              name="Szósz"
-              type="radio"
-              ref={register({ required: true })}
-            />
-            <label htmlFor={sauce}>{sauce}</label>
-            <br />
-          </React.Fragment>
-        ))}
-        <hr />
-        {Object.keys(INGREDIENTS.cheeses).map((cheese) => (
-          <React.Fragment key={cheese}>
-            <input
-              id={cheese}
-              value={cheese}
-              name="Sajt"
-              type="radio"
-              ref={register({ required: true })}
-            />
-            <label htmlFor={cheese}>{cheese}</label>
-            <br />
-          </React.Fragment>
-        ))}
-        <hr />
-        {Object.keys(INGREDIENTS.toppings).map((topping) => (
-          <React.Fragment key={topping}>
-            <input
-              id={topping}
-              value={topping}
-              name="Feltétek"
-              type="checkbox"
-              ref={register}
-            />
-            <label htmlFor={topping}>{topping}</label>
-            <br />
-          </React.Fragment>
-        ))}
-        <button type="submit">GENERÁLÁS</button>
+        <div className="flex flex-wrap flex-row mt-6">
+          <div>
+            <p class="text-white m-1">Szoszok</p>
+            {Object.keys(INGREDIENTS.sauces).map((sauce) => (
+              <React.Fragment key={sauce}>
+                <input
+                  className="p-2 m-1"
+                  id={sauce}
+                  value={sauce}
+                  name="Szósz"
+                  type="radio"
+                  onChange={() =>
+                    dispatch({
+                      type: "SET_SAUCE",
+                      payload: INGREDIENTS.sauces[sauce],
+                    })
+                  }
+                  ref={register({ required: true })}
+                />
+                <label htmlFor={sauce}>{sauce}</label>
+                <br />
+              </React.Fragment>
+            ))}
+            <p class="text-white m-1">Sajtok</p>
+            {Object.keys(INGREDIENTS.cheeses).map((cheese) => (
+              <React.Fragment key={cheese}>
+                <input
+                  className="p-2 m-1"
+                  id={cheese}
+                  value={cheese}
+                  name="Sajt"
+                  type="radio"
+                  onChange={() =>
+                    dispatch({
+                      type: "SET_CHEESE",
+                      payload: INGREDIENTS.cheeses[cheese],
+                    })
+                  }
+                  ref={register({ required: true })}
+                />
+                <label htmlFor={cheese}>{cheese}</label>
+                <br />
+              </React.Fragment>
+            ))}
+          </div>
+          <div>
+            <p class="text-white m-1">Feltetek</p>
+            {Object.keys(INGREDIENTS.toppings).map((topping) => (
+              <React.Fragment key={topping}>
+                <input
+                  className="p-2 m-1 ml-3"
+                  id={topping}
+                  value={topping}
+                  name="Feltétek"
+                  type="checkbox"
+                  onChange={(event) => check(event)}
+                  ref={register}
+                />
+                <label htmlFor={topping}>{topping}</label>
+                <br />
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+        <div>
+          <button className="bg-blue-500 text-white rounded-full hover:bg-blue-400 px-4 py-2 mx-0 outline-none focus:shadow-outline">
+            Kosarba
+          </button>
+        </div>
       </form>
     </div>
   );
