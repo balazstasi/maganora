@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Context } from "store/store";
 import INGREDIENTS from "store/ingredients";
 import classes from "./BuildControls.module.css";
+import axios from "axios-config";
 
 export default function BuildControls() {
   const [state, dispatch] = useContext(Context);
@@ -27,16 +28,44 @@ export default function BuildControls() {
     }
   };
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/orders.json")
+  //     .then((response) => console.log(response))
+  //     .catch((error) => console.log(error));
+  //   // let res;
+  //   // const getData = async () => {
+  //   //   res = await axios.get("/orders.json");
+  //   // };
+  //   // getData();
+  // }, []);
+
+  // async akkor kell ha az ember nem a .then-es megodlast hasznalja
+  // const onPurchase = async () => {
+  //   const order = {
+  //     sauce: state.sauce.name,
+  //     cheese: state.cheese.name,
+  //     toppings: state.toppings.map((topping) => topping.name),
+  //   };
+
+  //   // axios
+  //   //   .post("/orders.json", order)
+  //   //   .then((response) => console.log(response))
+  //   //   .catch((error) => console.log(error));
+  //   const res = await axios.post("/orders.json", order);
+  //   console.log(res);
+  // };
+
   return (
     <div>
       <form
         id="sauces"
-        style={{ "margin-left": "40%" }}
+        style={{ marginLeft: "40%" }}
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-wrap flex-row mt-6">
           <div>
-            <p class="text-white m-1">Szoszok</p>
+            <p class="text-black m-1">Szoszok</p>
             {Object.keys(INGREDIENTS.sauces).map((sauce) => (
               <React.Fragment key={sauce}>
                 <input
@@ -48,7 +77,7 @@ export default function BuildControls() {
                   onChange={() =>
                     dispatch({
                       type: "SET_SAUCE",
-                      payload: INGREDIENTS.sauces[sauce],
+                      payload: { ...INGREDIENTS.sauces[sauce], name: sauce },
                     })
                   }
                   ref={register({ required: true })}
@@ -57,7 +86,7 @@ export default function BuildControls() {
                 <br />
               </React.Fragment>
             ))}
-            <p class="text-white m-1">Sajtok</p>
+            <p class="text-black m-1">Sajtok</p>
             {Object.keys(INGREDIENTS.cheeses).map((cheese) => (
               <React.Fragment key={cheese}>
                 <input
@@ -69,7 +98,7 @@ export default function BuildControls() {
                   onChange={() =>
                     dispatch({
                       type: "SET_CHEESE",
-                      payload: INGREDIENTS.cheeses[cheese],
+                      payload: { ...INGREDIENTS.cheeses[cheese], name: cheese },
                     })
                   }
                   ref={register({ required: true })}
@@ -80,7 +109,7 @@ export default function BuildControls() {
             ))}
           </div>
           <div>
-            <p class="text-white m-1">Feltetek</p>
+            <p class="text-black m-1">Feltetek</p>
             {Object.keys(INGREDIENTS.toppings).map((topping) => (
               <React.Fragment key={topping}>
                 <input
@@ -99,7 +128,10 @@ export default function BuildControls() {
           </div>
         </div>
         <div>
-          <button className="bg-blue-500 text-white rounded-full hover:bg-blue-400 px-4 py-2 mx-0 outline-none focus:shadow-outline">
+          <button
+            onClick={() => dispatch({ type: "ADD_TO_CART" })}
+            className="bg-blue-500 text-white rounded-full hover:bg-blue-400 px-4 py-2 mx-0 outline-none focus:shadow-outline"
+          >
             Kosarba
           </button>
         </div>

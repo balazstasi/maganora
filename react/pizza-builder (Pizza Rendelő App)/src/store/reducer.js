@@ -26,6 +26,18 @@ const Reducer = (state, action) => {
         ...state,
         totalPrice: state.toppings.reduce((prev, next) => prev + next),
       };
+    case "ADD_TO_CART":
+      return {
+        ...state,
+        pizzas: [
+          ...state.pizzas,
+          {
+            sauce: state.sauce,
+            cheese: state.cheese,
+            toppings: state.toppings,
+          },
+        ],
+      };
     default:
       throw new Error("The action type provided can't be found");
   }

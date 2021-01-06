@@ -3,7 +3,7 @@ import React from "react";
 function Layout({ children }) {
   return (
     <>
-      <div>Toolbar, SideDrawer, Backdrop</div>
+      {/* <Navbar /> */}
       <main>{children}</main>
     </>
   );

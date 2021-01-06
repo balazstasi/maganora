@@ -1,6 +1,6 @@
 .pizzaBase {
   position: absolute;
-  top: 0;
+  top: 8%;
   left: 0;
   width: 487px;
   height: 468px;
@@ -8,7 +8,7 @@
 
 .pizzaTopping {
   position: absolute;
-  top: 35px;
+  top: 13%;
   left: 35px;
   width: 405px;
   height: 405px;

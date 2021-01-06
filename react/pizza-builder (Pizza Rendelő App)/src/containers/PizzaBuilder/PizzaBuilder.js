@@ -5,11 +5,13 @@ import classes from "./PizzaBuilder.module.css";
 
 export default function PizzaBuilder() {
   return (
-    <div>
-      <div className={classes.PizzaBuilder}>
-        <Pizza />
+    <>
+      <div>
+        <div className={classes.PizzaBuilder}>
+          <Pizza />
+        </div>
+        <BuildControls />
       </div>
-      <BuildControls />
-    </div>
+    </>
   );
 }
