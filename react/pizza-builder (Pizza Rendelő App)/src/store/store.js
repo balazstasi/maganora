@@ -2,8 +2,8 @@ import React, { createContext, useReducer } from "react";
 import Reducer from "store/reducer";
 
 const initialState = {
-  sauce: undefined,
-  cheese: undefined,
+  sauce: null,
+  cheese: null,
   toppings: [],
   totalPrice: 0,
   pizzas: [],

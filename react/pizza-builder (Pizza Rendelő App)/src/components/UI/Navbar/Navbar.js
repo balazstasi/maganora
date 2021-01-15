@@ -1,26 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "store/store";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
+  const [state] = useContext(Context);
+  const location = useLocation();
+  const [currentRoute, setCurrentRoute] = useState(location.pathname);
+
+  useEffect(() => {
+    console.log(currentRoute);
+    console.log(location.pathname);
+  }, [currentRoute, location]);
+
   return (
     <nav className="bg-white shadow" role="navigation">
       <div className="container mx-auto p-4 flex flex-wrap items-center md:flex-no-wrap">
         <div className="mr-4 md:mr-8">
-          <a href="#" rel="home">
-            <svg
-              className="w-10 h-10 text-purple-600"
-              width="54"
-              height="54"
-              viewBox="0 0 54 54"
-              xmlns="http://www.w3.org/2000/svg"
+          <Link to="/">
+            <h1
+              onClick={() => setCurrentRoute("/home")}
+              className="text-md text-red-500 text-xl"
             >
-              <title>TailwindCSS</title>
-              <path
-                fill="currentColor"
-                d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
-              ></path>
-            </svg>
-          </a>
+              PizzaÉpítő
+            </h1>
+          </Link>
         </div>
         <div className="ml-auto md:hidden">
           <button
@@ -39,11 +42,32 @@ export const Navbar = () => {
         </div>
         <div className="w-full md:w-auto md:flex-grow md:flex md:items-center">
           <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:mr-4 lg:mr-8 md:border-0">
-            <li className="block px-4 py-1 md:p-2 lg:px-4 select-none">
-              <Link to="/cart">Kosár</Link>
+            <li>
+              <Link to="/cart">
+                <p
+                  className={`${
+                    currentRoute === "/cart" ? "text-purple-600" : "text-black"
+                  } block px-4 py-1 md:p-2 lg:px-4 select-none`}
+                  onClick={() => setCurrentRoute("/cart")}
+                >
+                  Kosár
+                  {state.pizzas.length > 0 && (
+                    <span> ({state.pizzas.length})</span>
+                  )}
+                </p>
+              </Link>
             </li>
-            <li className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600 select-none">
-              <Link to="/builder">Pizza Építő</Link>
+            <li>
+              <Link to="/builder">
+                <p
+                  className={`block px-4 py-1 md:p-2 lg:px-4 ${
+                    currentRoute === "/home" ? "text-purple-600" : "text-black"
+                  } select-none`}
+                  onClick={() => setCurrentRoute("/home")}
+                >
+                  Pizza Építő
+                </p>
+              </Link>
             </li>
           </ul>
           <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0">

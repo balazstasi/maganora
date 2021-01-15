@@ -10,7 +10,8 @@ export default function Pizza() {
       <PizzaIngredient type="base" />
       {state.sauce && <PizzaIngredient type="sauce" data={state.sauce} />}
       {state.cheese && <PizzaIngredient type="cheese" data={state.cheese} />}
-      {state.toppings.length > 0 &&
+      {state.toppings &&
+        state.toppings.length > 0 &&
         state.toppings.map((topping, i) => (
           <PizzaIngredient type="topping" data={topping} i={i} key={i} />
         ))}

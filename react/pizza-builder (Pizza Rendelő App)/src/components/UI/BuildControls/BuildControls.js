@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Context } from "store/store";
 import INGREDIENTS from "store/ingredients";
@@ -7,10 +7,17 @@ import axios from "axios-config";
 
 export default function BuildControls() {
   const [state, dispatch] = useContext(Context);
-  const { register, handleSubmit } = useForm();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // TODO RESETELES
+    reset(data);
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 1000);
+    dispatch({ type: "ADD_TO_CART" });
   };
 
   const check = (event) => {
@@ -74,6 +81,10 @@ export default function BuildControls() {
                   value={sauce}
                   name="Szósz"
                   type="radio"
+                  checked={
+                    state.sauce && sauce === state.sauce.name ? true : false
+                  }
+                  onClick={() => dispatch({ type: "SET_SAUCE", payload: null })}
                   onChange={() =>
                     dispatch({
                       type: "SET_SAUCE",
@@ -95,11 +106,17 @@ export default function BuildControls() {
                   value={cheese}
                   name="Sajt"
                   type="radio"
+                  checked={
+                    state.cheese && cheese === state.cheese.name ? true : false
+                  }
                   onChange={() =>
                     dispatch({
                       type: "SET_CHEESE",
                       payload: { ...INGREDIENTS.cheeses[cheese], name: cheese },
                     })
+                  }
+                  onClick={() =>
+                    dispatch({ type: "SET_CHEESE", payload: null })
                   }
                   ref={register({ required: true })}
                 />
@@ -118,6 +135,12 @@ export default function BuildControls() {
                   value={topping}
                   name="Feltétek"
                   type="checkbox"
+                  checked={
+                    state.toppings.length > 0 &&
+                    state.toppings.find((t) => t.name === topping)
+                      ? true
+                      : false
+                  }
                   onChange={(event) => check(event)}
                   ref={register}
                 />
@@ -129,12 +152,24 @@ export default function BuildControls() {
         </div>
         <div>
           <button
-            onClick={() => dispatch({ type: "ADD_TO_CART" })}
-            className="bg-blue-500 text-white rounded-full hover:bg-blue-400 px-4 py-2 mx-0 outline-none focus:shadow-outline"
+            type="submit"
+            disabled={buttonDisabled}
+            className={`rounded-full px-4 py-2 mx-0 outline-none focus:shadow-outline ${
+              buttonDisabled
+                ? "bg-gray-300 hover:bg-gray-300 text-black"
+                : "bg-blue-500 hover:bg-blue-400 text-white"
+            }`}
           >
-            Kosarba
+            {(buttonDisabled && "Hozzáadás...") || "Kosárba"}
           </button>
         </div>
+        <button
+          onClick={() => reset()}
+          type="button"
+          className="mx-1 my-2 rounded-full px-4 py-2 mx-0 outline-none focus:shadow-outline bg-gray-300 hover:bg-gray-300 text-black"
+        >
+          Alapértelmezett
+        </button>
       </form>
     </div>
   );

@@ -7,11 +7,21 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "components/UI/Navbar/Navbar";
 
 function App() {
-  const [state] = useContext(Context);
+  const [state, dispatch] = useContext(Context);
 
+  // componentDidMount
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    const localState = localStorage.getItem("state");
+    console.log(localState);
+    localState &&
+      dispatch({ type: "SET_STATE", payload: JSON.parse(localState) });
+  }, [dispatch]);
+
+  // componentDidUpdate
+  useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(state));
+    console.log(JSON.parse(localStorage.getItem("state")));
+  }, [dispatch, state]);
 
   return (
     <Layout>
