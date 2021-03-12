@@ -1,3 +1,4 @@
+"use strict";
 function add(a, b) {
     if (typeof a === "string" || typeof b === "string") {
         return a.toString() + b.toString();
@@ -44,3 +45,14 @@ function useVehicle(vehicle) {
 }
 useVehicle(v1);
 useVehicle(v2);
+function moveAnimal(animal) {
+    var speed;
+    if (animal.type === "bird") {
+        speed = animal.flyingSpeed;
+    }
+    else if (animal.type === "horse") {
+        speed = animal.runningSpeed;
+    }
+    console.log("Moving at speed: ", speed);
+}
+moveAnimal({ type: "bird", flyingSpeed: 100 });
