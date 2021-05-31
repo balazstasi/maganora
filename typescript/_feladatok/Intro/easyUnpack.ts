@@ -4,7 +4,7 @@ import assert = require("assert");
     *    Kicsomagolas
 
     TODO:
-    Irj egy fuggvenyt, ami megkap egy barmilyen hosszusagu tombot, es visszaad egy 3 elemu tuplet, amiben (ilyen sorrendben) az 1. 3. 2. elemek szerepelnek. Lejjebb lathatod majd a teszteket azokat nem modositsd, ha sikeresen lefutnak kesz a felcsi:)
+    Irj egy fuggvenyt, ami megkap egy barmilyen hosszusagu tombot, es visszaad egy 3 elemu tuplet, amiben (ilyen sorrendben) az 1. 3. visszafele a 2. elemek szerepelnek. Lejjebb lathatod majd a teszteket azokat nem modositsd, ha sikeresen lefutnak kesz a felcsi:)
     
     ? Bonusz pont a helyes tipusozasert, de ez nem muszaj :D (nem anyt hasznalunk, megadjuk a kimenet tipusat stb)
 

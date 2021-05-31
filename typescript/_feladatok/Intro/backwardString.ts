@@ -17,8 +17,18 @@ import assert = require("assert");
 */
 
 function backwardString(value: string): string {
-  // kodod ide
-  return "";
+  let newString: string = "";
+
+  for (let i = value.length - 1; i >= 0; i--) {
+    newString += value[i];
+  }
+
+  return newString;
+}
+
+function backwardStringRecursion(value: string): string {
+  if (value === "") return "";
+  else return backwardStringRecursion(value.substr(1)) + value.charAt(0);
 }
 
 // TESZTELESHEZ - ne nyulj hozza, mert maskepp nem fog mukodni a tesztelese az eredmenynek
